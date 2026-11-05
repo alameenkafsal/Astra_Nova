@@ -1,3 +1,4 @@
+```css
 * {
     margin: 0;
     padding: 0;
@@ -18,24 +19,34 @@ body {
 /* NAVIGATION */
 
 nav {
-    background: rgba(10, 0, 30, 0.95);
-    padding: 18px;
-    text-align: center;
+    width: 100%;
+    background: rgba(10, 0, 30, 0.98);
+    padding: 18px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 25px;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 nav a {
+    display: inline-block;
     color: white;
     text-decoration: none;
-    margin: 0 15px;
     font-weight: bold;
+    font-size: 15px;
+    white-space: nowrap;
+    margin: 0;
     transition: 0.3s;
 }
 
 nav a:hover {
     color: #00eaff;
+    transform: scale(1.08);
 }
 
 /* HOME */
@@ -133,7 +144,6 @@ section h2 {
     max-height: 95vw;
     margin: 30px auto;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(40, 20, 90, 0.2), transparent);
 }
 
 /* SUN */
@@ -155,7 +165,7 @@ section h2 {
     z-index: 5;
 }
 
-/* ORBITS */
+/* ORBIT */
 
 .orbit {
     position: absolute;
@@ -172,14 +182,13 @@ section h2 {
     top: 50%;
     left: 0;
     transform: translate(-50%, -50%);
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.5));
 }
 
-/* PLANET ORBIT SIZES */
+/* ORBIT SIZES */
 
 .mercury-orbit {
     width: 110px;
@@ -243,13 +252,12 @@ section h2 {
     font-size: 30px;
 }
 
-/* ORBIT ANIMATION */
+/* ROTATION ANIMATION */
 
 @keyframes orbit-spin {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
-
     to {
         transform: translate(-50%, -50%) rotate(360deg);
     }
@@ -310,9 +318,13 @@ footer {
 
 @media (max-width: 650px) {
 
+    nav {
+        flex-wrap: wrap;
+        gap: 10px 15px;
+        padding: 12px 5px;
+    }
+
     nav a {
-        display: inline-block;
-        margin: 6px;
         font-size: 13px;
     }
 
@@ -368,67 +380,4 @@ footer {
         width: 90%;
     }
 }
-/* SOLAR SYSTEM ROTATION FIX */
-
-.orbit {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform-origin: center center;
-    animation-name: orbit-spin !important;
-    animation-timing-function: linear !important;
-    animation-iteration-count: infinite !important;
-}
-
-.mercury-orbit {
-    animation-duration: 5s !important;
-}
-
-.venus-orbit {
-    animation-duration: 8s !important;
-}
-
-.earth-orbit {
-    animation-duration: 11s !important;
-}
-
-.mars-orbit {
-    animation-duration: 15s !important;
-}
-
-.jupiter-orbit {
-    animation-duration: 20s !important;
-}
-
-.saturn-orbit {
-    animation-duration: 26s !important;
-}
-
-@keyframes orbit-spin {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 20px;
-}
-
-nav a {
-    display: inline-block;
-    white-space: nowrap;
-    margin: 0;
-}
-
-@media (max-width: 650px) {
-    nav {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-}
+```
