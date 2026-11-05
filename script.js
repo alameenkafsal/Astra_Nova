@@ -1,3 +1,8 @@
+// ===================================
+// NAKSHATRA AI - SPACE MISSION TRAINER
+// ===================================
+
+
 // START MISSION
 function startMission() {
     alert("🚀 Welcome, Junior Astronaut! Your space mission is starting!");
@@ -8,72 +13,77 @@ function startMission() {
 }
 
 
+// ===================================
 // PLANET INFORMATION
+// ===================================
+
 const planets = {
 
     Mercury: {
         name: "Mercury ☿",
         type: "Smallest Planet",
         temperature: "167°C average",
-        fact: "Mercury is the closest planet to the Sun. It has a very thin atmosphere."
+        fact: "Mercury is the closest planet to the Sun."
     },
 
     Venus: {
         name: "Venus ♀",
         type: "Hottest Planet",
         temperature: "464°C average",
-        fact: "Venus is the hottest planet in our Solar System. It has thick clouds of carbon dioxide."
+        fact: "Venus is the hottest planet in our Solar System."
     },
 
     Earth: {
         name: "Earth 🌍",
         type: "Our Home Planet",
         temperature: "15°C average",
-        fact: "Earth is the only planet currently known to support life. It has liquid water on its surface."
+        fact: "Earth is the only planet currently known to support life."
     },
 
     Mars: {
         name: "Mars 🔴",
         type: "The Red Planet",
         temperature: "-65°C average",
-        fact: "Mars looks red because of iron oxide on its surface. Scientists are studying it for signs of ancient life."
+        fact: "Mars looks red because of iron oxide on its surface."
     },
 
     Jupiter: {
         name: "Jupiter 🟠",
         type: "Largest Planet",
         temperature: "-110°C average",
-        fact: "Jupiter is the largest planet. It has a giant storm called the Great Red Spot."
+        fact: "Jupiter has a giant storm called the Great Red Spot."
     },
 
     Saturn: {
         name: "Saturn 🪐",
         type: "Ringed Planet",
         temperature: "-140°C average",
-        fact: "Saturn is famous for its beautiful rings made mostly of ice and rocky particles."
+        fact: "Saturn has beautiful rings made mostly of ice and rock."
     },
 
     Uranus: {
         name: "Uranus 🔵",
         type: "Ice Giant",
         temperature: "-195°C average",
-        fact: "Uranus rotates on its side and has a blue-green appearance because of methane in its atmosphere."
+        fact: "Uranus rotates on its side."
     },
 
     Neptune: {
         name: "Neptune 🔵",
         type: "Farthest Planet",
         temperature: "-200°C average",
-        fact: "Neptune is the farthest planet from the Sun. It has extremely strong winds."
+        fact: "Neptune has extremely strong winds."
     }
 
 };
 
 
-// DISPLAY PLANET DETAILS
+// SHOW PLANET INFORMATION
 function showPlanetInfo(planetName) {
 
     const planet = planets[planetName];
+
+    if (!planet) return;
 
     const details = document.getElementById("planet-details");
 
@@ -91,7 +101,10 @@ function showPlanetInfo(planetName) {
 }
 
 
-// QUIZ QUESTIONS
+// ===================================
+// SPACE QUIZ QUESTIONS
+// ===================================
+
 const questions = [
 
     {
@@ -132,7 +145,30 @@ const questions = [
 
     {
         question: "Who was the first human to walk on the Moon?",
-        options: ["Yuri Gagarin", "Neil Armstrong", "Buzz Aldrin", "John Glenn"],
+        options: [
+            "Yuri Gagarin",
+            "Neil Armstrong",
+            "Buzz Aldrin",
+            "John Glenn"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which planet is farthest from the Sun?",
+        options: ["Uranus", "Saturn", "Neptune", "Jupiter"],
+        answer: 2
+    },
+
+    {
+        question: "Which planet is the hottest?",
+        options: ["Mercury", "Venus", "Mars", "Earth"],
+        answer: 1
+    },
+
+    {
+        question: "What force keeps planets in orbit?",
+        options: ["Friction", "Gravity", "Magnetism", "Electricity"],
         answer: 1
     }
 
@@ -141,10 +177,17 @@ const questions = [
 
 let currentQuestion = 0;
 let score = 0;
+let timeLeft = 15;
+let quizTimer = null;
 
 
+// ===================================
 // START QUIZ
+// ===================================
+
 function startQuiz() {
+
+    clearInterval(quizTimer);
 
     currentQuestion = 0;
     score = 0;
@@ -153,68 +196,304 @@ function startQuiz() {
 }
 
 
-// DISPLAY QUESTION
+// ===================================
+// SHOW QUESTION
+// ===================================
+
 function showQuestion() {
+
+    clearInterval(quizTimer);
 
     const container = document.getElementById("quiz-container");
 
     if (currentQuestion >= questions.length) {
-
-        container.innerHTML = `
-            <h3>🎉 Quiz Completed!</h3>
-            <p>Your Score: ${score} / ${questions.length}</p>
-            <button onclick="startQuiz()">Play Again 🚀</button>
-        `;
-
+        finishQuiz();
         return;
     }
+
+    timeLeft = 15;
 
     const q = questions[currentQuestion];
 
     let html = `
-        <h3>Question ${currentQuestion + 1} of ${questions.length}</h3>
-        <p>${q.question}</p>
+        <h3>🚀 Space Mission Quiz</h3>
+
+        <p>Question ${currentQuestion + 1} of ${questions.length}</p>
+
+        <p>🏆 Score: ${score}</p>
+
+        <div style="
+            width:100%;
+            background:#333;
+            height:10px;
+            border-radius:20px;
+            margin:15px 0;
+        ">
+            <div id="progress-bar" style="
+                width:${(currentQuestion / questions.length) * 100}%;
+                height:10px;
+                background:linear-gradient(90deg,#6500ff,#00c8ff);
+                border-radius:20px;
+            "></div>
+        </div>
+
+        <h3 id="timer">⏱️ Time: 15s</h3>
+
+        <h3 style="margin:20px 0;">
+            ${q.question}
+        </h3>
+
+        <div id="quiz-options">
     `;
 
     q.options.forEach((option, index) => {
 
         html += `
-            <button onclick="checkAnswer(${index})">
+            <button
+                class="quiz-option"
+                onclick="checkAnswer(${index})"
+                style="
+                    display:block;
+                    width:100%;
+                    margin:10px 0;
+                "
+            >
                 ${option}
             </button>
-            <br><br>
         `;
 
     });
 
+    html += `
+        </div>
+
+        <p id="quiz-feedback"></p>
+    `;
+
     container.innerHTML = html;
+
+    startTimer();
 }
 
 
+// ===================================
+// TIMER
+// ===================================
+
+function startTimer() {
+
+    clearInterval(quizTimer);
+
+    quizTimer = setInterval(() => {
+
+        timeLeft--;
+
+        const timer = document.getElementById("timer");
+
+        if (timer) {
+            timer.innerHTML = `⏱️ Time: ${timeLeft}s`;
+        }
+
+        if (timeLeft <= 0) {
+
+            clearInterval(quizTimer);
+
+            const feedback = document.getElementById("quiz-feedback");
+
+            if (feedback) {
+                feedback.innerHTML = "⏰ Time's Up!";
+            }
+
+            disableOptions();
+
+            setTimeout(() => {
+                currentQuestion++;
+                showQuestion();
+            }, 1200);
+
+        }
+
+    }, 1000);
+}
+
+
+// ===================================
 // CHECK ANSWER
+// ===================================
+
 function checkAnswer(selectedIndex) {
 
-    if (selectedIndex === questions[currentQuestion].answer) {
+    clearInterval(quizTimer);
 
-        score++;
-        alert("✅ Correct Answer!");
+    const correctAnswer = questions[currentQuestion].answer;
+
+    const feedback = document.getElementById("quiz-feedback");
+
+    if (selectedIndex === correctAnswer) {
+
+        score += 10;
+
+        feedback.innerHTML = "✅ Correct! +10 Points 🚀";
 
     } else {
 
-        alert("❌ Wrong Answer! Try the next question.");
+        feedback.innerHTML =
+            "❌ Incorrect! Correct answer: " +
+            questions[currentQuestion].options[correctAnswer];
 
     }
 
-    currentQuestion++;
+    disableOptions();
 
-    showQuestion();
+    setTimeout(() => {
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }, 1300);
 }
 
 
+// DISABLE ANSWER BUTTONS
+function disableOptions() {
+
+    const buttons = document.querySelectorAll(".quiz-option");
+
+    buttons.forEach(button => {
+        button.disabled = true;
+        button.style.opacity = "0.6";
+        button.style.cursor = "not-allowed";
+    });
+
+}
+
+
+// ===================================
+// FINISH QUIZ
+// ===================================
+
+function finishQuiz() {
+
+    clearInterval(quizTimer);
+
+    const container = document.getElementById("quiz-container");
+
+    let level = "";
+    let badge = "";
+
+    if (score >= 90) {
+        level = "Space Commander";
+        badge = "🏆";
+    }
+
+    else if (score >= 70) {
+        level = "Senior Astronaut";
+        badge = "🥇";
+    }
+
+    else if (score >= 40) {
+        level = "Junior Astronaut";
+        badge = "🥈";
+    }
+
+    else {
+        level = "Space Trainee";
+        badge = "⭐";
+    }
+
+    saveScore(score);
+
+    container.innerHTML = `
+        <h2>🎉 Mission Completed!</h2>
+
+        <h1 style="font-size:45px;">${badge}</h1>
+
+        <h3>${level}</h3>
+
+        <h2>🏆 ${score} / 100</h2>
+
+        <p>You completed your Space Knowledge Mission!</p>
+
+        <button onclick="startQuiz()">
+            Play Again 🚀
+        </button>
+
+        <button onclick="showLeaderboard()">
+            View Leaderboard 🥇
+        </button>
+    `;
+}
+
+
+// ===================================
+// LEADERBOARD
+// ===================================
+
+function saveScore(newScore) {
+
+    let scores = JSON.parse(
+        localStorage.getItem("nakshatraScores") || "[]"
+    );
+
+    scores.push(newScore);
+
+    scores.sort((a, b) => b - a);
+
+    scores = scores.slice(0, 5);
+
+    localStorage.setItem(
+        "nakshatraScores",
+        JSON.stringify(scores)
+    );
+
+}
+
+
+function showLeaderboard() {
+
+    const container = document.getElementById("quiz-container");
+
+    const scores = JSON.parse(
+        localStorage.getItem("nakshatraScores") || "[]"
+    );
+
+    let html = `
+        <h2>🥇 Space Leaderboard</h2>
+        <p>Top 5 Scores</p>
+    `;
+
+    if (scores.length === 0) {
+        html += "<p>No scores yet. Play the quiz first!</p>";
+    }
+
+    scores.forEach((item, index) => {
+
+        html += `
+            <p style="margin:12px;">
+                ${index + 1}. ${item} Points
+            </p>
+        `;
+
+    });
+
+    html += `
+        <button onclick="startQuiz()">Play Again 🚀</button>
+    `;
+
+    container.innerHTML = html;
+
+}
+
+
+// ===================================
 // AI SPACE ASSISTANT
+// ===================================
+
 function sendMessage() {
 
     const input = document.getElementById("user-input");
+
     const chatBox = document.getElementById("chat-box");
 
     const message = input.value.trim().toLowerCase();
@@ -224,18 +503,22 @@ function sendMessage() {
         return;
     }
 
-    chatBox.innerHTML += `
-        <p><strong>🧑‍🚀 You:</strong> ${input.value}</p>
-    `;
+    const userMessage = document.createElement("p");
 
-    let reply = "I am your Space Assistant! Ask me about planets, Mars, Moon, Sun or gravity.";
+    userMessage.innerHTML = "<strong>🧑‍🚀 You:</strong> ";
+
+    userMessage.textContent += input.value;
+
+    chatBox.appendChild(userMessage);
+
+    let reply = "Ask me about planets, Mars, Moon, Sun or gravity!";
 
     if (message.includes("mars")) {
-        reply = "Mars is called the Red Planet. It has two small moons: Phobos and Deimos.";
+        reply = "Mars is called the Red Planet. It has two moons: Phobos and Deimos.";
     }
 
     else if (message.includes("moon")) {
-        reply = "The Moon is Earth's natural satellite. It takes about 27.3 days to orbit Earth.";
+        reply = "The Moon is Earth's natural satellite.";
     }
 
     else if (message.includes("sun")) {
@@ -243,7 +526,7 @@ function sendMessage() {
     }
 
     else if (message.includes("earth")) {
-        reply = "Earth is our home planet and the only world currently known to support life.";
+        reply = "Earth is our home planet and supports life.";
     }
 
     else if (message.includes("jupiter")) {
@@ -279,16 +562,23 @@ function sendMessage() {
     }
 
     else if (message.includes("planet")) {
-        reply = "Our Solar System has eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.";
+        reply = "Our Solar System has eight planets!";
     }
 
-    else if (message.includes("hello") || message.includes("hi")) {
+    else if (
+        message.includes("hello") ||
+        message.includes("hi")
+    ) {
         reply = "Hello Junior Astronaut! 🚀 Ready to explore space?";
     }
 
-    chatBox.innerHTML += `
-        <p><strong>🤖 Assistant:</strong> ${reply}</p>
-    `;
+    const assistantMessage = document.createElement("p");
+
+    assistantMessage.innerHTML = "<strong>🤖 Assistant:</strong> ";
+
+    assistantMessage.textContent += reply;
+
+    chatBox.appendChild(assistantMessage);
 
     input.value = "";
 
