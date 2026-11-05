@@ -1,4 +1,4 @@
-/* GENERAL SETTINGS */
+/* GENERAL */
 * {
     margin: 0;
     padding: 0;
@@ -11,68 +11,62 @@ body {
     color: white;
     background-color: #02010a;
     background-image:
-        radial-gradient(circle at 15% 20%, rgba(90, 30, 180, 0.22), transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(0, 100, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 50% 75%, rgba(100, 0, 180, 0.16), transparent 30%),
+        radial-gradient(circle at 15% 20%, rgba(90,30,180,.25), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0,100,255,.2), transparent 28%),
         radial-gradient(white 1px, transparent 1px),
         radial-gradient(#8c9eff 1px, transparent 1px);
-    background-size: auto, auto, auto, 90px 90px, 140px 140px;
-    background-position: center, center, center, 0 0, 40px 60px;
+    background-size: auto, auto, 90px 90px, 140px 140px;
+    background-position: center, center, 0 0, 40px 60px;
     overflow-x: hidden;
 }
 
-/* NAVIGATION BAR */
+/* NAVBAR */
 .navbar {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 25px;
-    width: 100%;
     padding: 20px;
-    background: rgba(3, 2, 15, 0.95);
-    border-bottom: 1px solid #33206b;
-    box-shadow: 0 0 20px rgba(90, 40, 255, 0.25);
+    background: rgba(3,2,15,.96);
+    border-bottom: 1px solid #5130a0;
+    box-shadow: 0 0 20px #391477;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .navbar a {
-    display: inline-block;
-    white-space: nowrap;
     color: white;
     text-decoration: none;
-    font-size: 16px;
     font-weight: bold;
-    transition: 0.3s;
+    white-space: nowrap;
+    transition: .3s;
 }
 
 .navbar a:hover {
-    color: #a879ff;
-    text-shadow: 0 0 15px #8c4dff;
+    color: #b98aff;
+    text-shadow: 0 0 15px #974cff;
 }
 
-/* ALL SECTIONS */
+/* SECTIONS */
 section {
     padding: 70px 7%;
     text-align: center;
-    position: relative;
 }
 
 section h2 {
     font-size: 32px;
     color: #c7a5ff;
     margin-bottom: 20px;
-    text-shadow: 0 0 15px rgba(130, 70, 255, 0.7);
+    text-shadow: 0 0 15px #753cff;
 }
 
 section p {
     line-height: 1.7;
 }
 
-/* HOME / HERO */
+/* HOME */
 .hero {
     min-height: 570px;
     display: flex;
@@ -82,20 +76,18 @@ section p {
     text-align: left;
     padding: 100px 8%;
     background:
-        radial-gradient(ellipse at 75% 50%, rgba(40, 80, 180, 0.3), transparent 40%),
-        linear-gradient(120deg, rgba(5, 3, 20, 0.9), rgba(12, 4, 35, 0.55));
+        radial-gradient(ellipse at 75% 50%, rgba(40,80,180,.3), transparent 40%),
+        linear-gradient(120deg, rgba(5,3,20,.9), rgba(12,4,35,.55));
 }
 
 .hero h1 {
     font-size: 55px;
-    color: white;
-    text-shadow: 0 0 20px #873cff;
     margin-bottom: 15px;
+    text-shadow: 0 0 20px #873cff;
 }
 
 .hero h2 {
     font-size: 38px;
-    color: #b98aff;
 }
 
 .hero p {
@@ -106,7 +98,7 @@ section p {
 
 /* BUTTONS */
 button {
-    background: linear-gradient(90deg, #6500ff, #a000ff);
+    background: linear-gradient(90deg,#6500ff,#a000ff);
     color: white;
     border: none;
     padding: 13px 25px;
@@ -114,8 +106,8 @@ button {
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 15px rgba(130, 50, 255, 0.6);
-    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(130,50,255,.6);
+    transition: .3s;
 }
 
 button:hover {
@@ -123,7 +115,7 @@ button:hover {
     box-shadow: 0 0 25px #9b50ff;
 }
 
-/* CARD CONTAINER */
+/* CARDS */
 .card-container {
     display: flex;
     justify-content: center;
@@ -133,22 +125,21 @@ button:hover {
     margin-top: 35px;
 }
 
-/* CARDS */
 .card {
-    background: rgba(12, 10, 35, 0.9);
+    background: rgba(12,10,35,.9);
     border: 1px solid #713bff;
     border-radius: 18px;
     padding: 30px 22px;
     width: 280px;
     min-height: 220px;
-    box-shadow: 0 0 18px rgba(90, 40, 255, 0.25);
-    transition: 0.3s;
+    box-shadow: 0 0 18px rgba(90,40,255,.25);
+    transition: .3s;
 }
 
 .card:hover {
     transform: translateY(-10px);
     border-color: #00c8ff;
-    box-shadow: 0 0 25px rgba(0, 180, 255, 0.5);
+    box-shadow: 0 0 25px rgba(0,180,255,.5);
 }
 
 .card h3 {
@@ -166,7 +157,7 @@ button:hover {
     position: relative;
     width: 100%;
     max-width: 650px;
-    height: 500px;
+    height: 540px;
     margin: 40px auto;
     display: flex;
     justify-content: center;
@@ -175,73 +166,126 @@ button:hover {
 
 .sun {
     position: absolute;
-    font-size: 55px;
-    z-index: 5;
-    filter: drop-shadow(0 0 25px orange);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 48px;
+    z-index: 10;
+    filter: drop-shadow(0 0 20px orange);
 }
 
+/* ORBIT CIRCLES */
 .orbit {
     position: absolute;
-    border: 1px solid rgba(150, 130, 255, 0.5);
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(150,130,255,.45);
     border-radius: 50%;
-    animation: rotateOrbit 12s linear infinite;
+    animation: rotateOrbit 20s linear infinite;
 }
 
+/* PLANET SHAPES */
 .planet {
     position: absolute;
     top: 50%;
-    right: -12px;
-    transform: translateY(-50%);
-    font-size: 23px;
+    left: 100%;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+    display: block;
+    font-size: 0;
+    box-shadow: inset -4px -3px 5px rgba(0,0,0,.5),
+                0 0 10px rgba(255,255,255,.4);
 }
 
-.mercury-orbit {
-    width: 110px;
-    height: 110px;
+/* MERCURY */
+.orbit:nth-of-type(2) .planet {
+    background: radial-gradient(circle at 30% 30%, #ddd, #777, #333);
+    width: 10px;
+    height: 10px;
 }
 
-.venus-orbit {
-    width: 175px;
-    height: 175px;
-    animation-duration: 18s;
+/* VENUS */
+.orbit:nth-of-type(3) .planet {
+    background: radial-gradient(circle at 30% 30%, #fff0ad, #d69b38, #804b19);
+    width: 16px;
+    height: 16px;
 }
 
-.earth-orbit {
-    width: 245px;
-    height: 245px;
-    animation-duration: 24s;
+/* EARTH */
+.orbit:nth-of-type(4) .planet {
+    background: radial-gradient(circle at 30% 30%, #a9eaff, #1686df, #06436f);
+    width: 20px;
+    height: 20px;
 }
 
-.mars-orbit {
-    width: 315px;
-    height: 315px;
-    animation-duration: 30s;
+/* MARS */
+.orbit:nth-of-type(5) .planet {
+    background: radial-gradient(circle at 30% 30%, #ffb18b, #d94b25, #75200d);
+    width: 16px;
+    height: 16px;
 }
 
-.jupiter-orbit {
-    width: 390px;
-    height: 390px;
-    animation-duration: 36s;
+/* JUPITER */
+.orbit:nth-of-type(6) .planet {
+    background: repeating-linear-gradient(
+        0deg,
+        #a66c43 0px,
+        #f0c18b 4px,
+        #bd8050 7px,
+        #f3d1a0 10px
+    );
+    width: 32px;
+    height: 32px;
 }
 
-.saturn-orbit {
-    width: 470px;
-    height: 470px;
-    animation-duration: 42s;
+/* SATURN */
+.orbit:nth-of-type(7) .planet {
+    background: radial-gradient(circle at 30% 30%, #fff0bd, #c49a55, #80602f);
+    width: 28px;
+    height: 28px;
+}
+
+.orbit:nth-of-type(7) .planet::after {
+    content: "";
+    position: absolute;
+    width: 45px;
+    height: 12px;
+    border: 3px solid #d9bd85;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(-25deg);
+}
+
+/* URANUS */
+.orbit:nth-of-type(8) .planet {
+    background: radial-gradient(circle at 30% 30%, #d8ffff, #62d7dc, #278b9a);
+    width: 23px;
+    height: 23px;
+}
+
+/* NEPTUNE */
+.orbit:nth-of-type(9) .planet {
+    background: radial-gradient(circle at 30% 30%, #a4caff, #235ee5, #102b85);
+    width: 22px;
+    height: 22px;
+}
+
+/* ORBIT ROTATION */
+@keyframes rotateOrbit {
+    from {
+        transform: translate(-50%,-50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%,-50%) rotate(360deg);
+    }
 }
 
 .space-note {
     color: #a9caff;
     margin-top: 20px;
-}
-
-@keyframes rotateOrbit {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 /* AI ASSISTANT */
@@ -251,10 +295,10 @@ button:hover {
     margin: 30px auto;
     padding: 25px;
     text-align: left;
-    background: rgba(10, 8, 30, 0.95);
+    background: rgba(10,8,30,.95);
     border: 1px solid #7546ff;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(110, 50, 255, 0.3);
+    box-shadow: 0 0 20px rgba(110,50,255,.3);
 }
 
 .chat-input {
@@ -281,10 +325,10 @@ button:hover {
     max-width: 650px;
     margin: 30px auto;
     padding: 30px;
-    background: rgba(12, 10, 35, 0.95);
+    background: rgba(12,10,35,.95);
     border: 1px solid #7546ff;
     border-radius: 18px;
-    box-shadow: 0 0 20px rgba(100, 50, 255, 0.3);
+    box-shadow: 0 0 20px rgba(100,50,255,.3);
 }
 
 #quiz-container p {
@@ -297,7 +341,7 @@ footer {
     padding: 35px 15px;
     background: #05030e;
     border-top: 1px solid #39216b;
-    box-shadow: 0 0 20px rgba(100, 50, 255, 0.2);
+    box-shadow: 0 0 20px rgba(100,50,255,.2);
 }
 
 footer h3 {
@@ -305,9 +349,8 @@ footer h3 {
     margin-bottom: 12px;
 }
 
-/* MOBILE RESPONSIVE */
+/* MOBILE */
 @media (max-width: 650px) {
-
     .navbar {
         gap: 15px;
         padding: 15px 8px;
@@ -344,9 +387,12 @@ footer h3 {
     }
 
     .solar-system-scene {
-        transform: scale(0.7);
+        transform: scale(.68);
         transform-origin: center;
         margin: 0 auto;
+        width: 650px;
+        left: 50%;
+        margin-left: -325px;
     }
 
     .chat-input {
