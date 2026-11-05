@@ -1,401 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="Nakshatra AI - Interactive Junior Astronaut Mission Trainer with Mars Mission Simulator, Solar System Explorer, AI Assistant and Space Quiz.">
-
     <title>Nakshatra AI | Junior Astronaut Mission Trainer</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- NAVIGATION -->
+<header>
     <nav class="navbar">
-        <a href="#home">🏠 Home</a>
-        <a href="#training">🎓 Training</a>
-        <a href="#missions">🚀 Missions</a>
-        <a href="#mars-simulator">🔴 Mars Simulator</a>
-        <a href="#solar-system">🪐 3D Space</a>
-        <a href="#assistant">🤖 AI Assistant</a>
-        <a href="#quiz">🏆 Quiz</a>
+        <h2>🚀 Nakshatra AI</h2>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#training">Training</a>
+            <a href="#missions">Missions</a>
+            <a href="#mars-simulator">Mars Simulator</a>
+            <a href="#solar-system">3D Space</a>
+            <a href="#assistant">AI Assistant</a>
+            <a href="#quiz">Quiz</a>
+        </div>
     </nav>
+</header>
 
+<!-- HOME -->
+<section id="home" class="hero">
+    <div>
+        <h1>Dream Beyond Earth 🌌</h1>
+        <h2>Junior Astronaut Mission Trainer</h2>
+        <p>Explore space, train like an astronaut and build a sustainable Mars mission.</p>
+        <button onclick="startMission()">Start Mission 🚀</button>
+    </div>
+</section>
 
-    <!-- HOME -->
-    <section id="home" class="hero">
+<!-- TRAINING -->
+<section id="training">
+    <h2>👨‍🚀 Astronaut Training</h2>
+    <p>Learn the basics before starting your space journey.</p>
 
-        <h1>🚀 Nakshatra AI</h1>
-
-        <h2>Dream Beyond Earth!</h2>
-
-        <p>
-            Become a Young Astronaut and Explore the Wonders of Space.
-            Learn about planets, complete exciting missions,
-            manage a Mars outpost and test your space knowledge.
-        </p>
-
-        <button onclick="startMission()">
-            Start Your Mission 🚀
-        </button>
-
-    </section>
-
-
-    <!-- TRAINING -->
-    <section id="training">
-
-        <h2>👨‍🚀 Astronaut Training</h2>
-
-        <p>
-            Complete your basic astronaut training before starting
-            your exciting space journey.
-        </p>
-
-        <div class="card-container">
-
-            <div class="card">
-                <h3>🧑‍🚀 Space Suit Training</h3>
-                <p>
-                    Learn about astronaut space suits,
-                    their components and their importance.
-                </p>
-                <button onclick="alert('Welcome to Space Suit Training!')">
-                    Start Training
-                </button>
-            </div>
-
-            <div class="card">
-                <h3>🌌 Space Environment</h3>
-                <p>
-                    Discover gravity, microgravity and
-                    how astronauts survive in outer space.
-                </p>
-                <button onclick="alert('Welcome to Space Environment Training!')">
-                    Explore
-                </button>
-            </div>
-
-            <div class="card">
-                <h3>🛰️ Space Station Training</h3>
-                <p>
-                    Learn how astronauts live and perform
-                    scientific experiments in space stations.
-                </p>
-                <button onclick="alert('Welcome to Space Station Training!')">
-                    Start Training
-                </button>
-            </div>
-
+    <div class="card-container">
+        <div class="card">
+            <h3>🪐 Space Exploration</h3>
+            <p>Discover planets, moons and the mysteries of our universe.</p>
         </div>
 
-    </section>
-
-
-    <!-- SPACE MISSIONS -->
-    <section id="missions">
-
-        <h2>🌍 Space Missions</h2>
-
-        <p>
-            Choose your mission and become an explorer of the universe!
-        </p>
-
-        <div class="card-container">
-
-            <div class="card">
-                <h3>🌕 Moon Mission</h3>
-                <p>
-                    Explore Earth's natural satellite
-                    and discover amazing facts about the Moon.
-                </p>
-                <button onclick="alert('Moon Mission Started!')">
-                    Start Mission
-                </button>
-            </div>
-
-            <div class="card">
-                <h3>🔴 Mars Mission</h3>
-                <p>
-                    Travel to the Red Planet and establish
-                    a human settlement on Mars.
-                </p>
-                <button onclick="document.getElementById('mars-simulator').scrollIntoView({behavior:'smooth'})">
-                    Start Mars Mission
-                </button>
-            </div>
-
-            <div class="card">
-                <h3>🪐 Solar System Mission</h3>
-                <p>
-                    Travel through our Solar System
-                    and discover all eight planets.
-                </p>
-                <button onclick="document.getElementById('solar-system').scrollIntoView({behavior:'smooth'})">
-                    Explore Planets
-                </button>
-            </div>
-
+        <div class="card">
+            <h3>🫁 Life Support</h3>
+            <p>Learn why oxygen, water and food are essential for astronauts.</p>
         </div>
 
-    </section>
+        <div class="card">
+            <h3>⚡ Space Technology</h3>
+            <p>Understand energy systems and technologies used in space missions.</p>
+        </div>
+    </div>
+</section>
 
+<!-- MISSIONS -->
+<section id="missions">
+    <h2>🌍 Space Missions</h2>
 
-    <!-- MARS MISSION SIMULATOR -->
-    <section id="mars-simulator">
-
-        <h2>🔴 Mars Mission Simulator</h2>
-
-        <p>
-            Welcome to Mars, Junior Astronaut!
-            Build and manage your Mars outpost.
-            Make smart decisions to keep your astronauts alive.
-        </p>
-
-        <div class="card-container">
-
-            <!-- LIFE SUPPORT -->
-            <div class="card">
-                <h3>🫁 Life Support</h3>
-                <p>
-                    Manage oxygen and water supplies
-                    for astronaut survival.
-                </p>
-
-                <h2 id="oxygen">100%</h2>
-
-                <button onclick="manageResource('oxygen')">
-                    Restore Oxygen
-                </button>
-            </div>
-
-
-            <!-- RADIATION -->
-            <div class="card">
-                <h3>🛡️ Radiation Shielding</h3>
-                <p>
-                    Protect astronauts from dangerous
-                    solar and cosmic radiation.
-                </p>
-
-                <h2 id="shield">100%</h2>
-
-                <button onclick="manageResource('shield')">
-                    Improve Shield
-                </button>
-            </div>
-
-
-            <!-- POWER -->
-            <div class="card">
-                <h3>⚡ Power Management</h3>
-                <p>
-                    Generate and manage solar energy
-                    for the Mars base.
-                </p>
-
-                <h2 id="power">100%</h2>
-
-                <button onclick="manageResource('power')">
-                    Generate Power
-                </button>
-            </div>
-
-
-            <!-- FOOD -->
-            <div class="card">
-                <h3>🌱 Food Production</h3>
-                <p>
-                    Grow crops and maintain a sustainable
-                    food supply for astronauts.
-                </p>
-
-                <h2 id="food">100%</h2>
-
-                <button onclick="manageResource('food')">
-                    Grow Food
-                </button>
-            </div>
-
+    <div class="card-container">
+        <div class="card">
+            <h3>🌕 Moon Mission</h3>
+            <p>Explore the Moon and understand lunar exploration.</p>
         </div>
 
-
-        <!-- MISSION DASHBOARD -->
-        <div class="card mission-dashboard">
-
-            <h2>🚀 Mars Mission Dashboard</h2>
-
-            <h3 id="mission-status">
-                🟢 Mission Ready!
-            </h3>
-
-            <p>
-                Manage all resources carefully.
-                Your decisions determine mission success.
-            </p>
-
-            <p id="mission-message">
-                Welcome to your Mars outpost, Commander!
-            </p>
-
-            <button onclick="checkMission()">
-                Check Mission Status
-            </button>
-
-            <button onclick="resetMission()">
-                Restart Mission 🔄
-            </button>
-
+        <div class="card">
+            <h3>🔴 Mars Mission</h3>
+            <p>Discover the challenges of building a human settlement on Mars.</p>
         </div>
 
-    </section>
+        <div class="card">
+            <h3>🌌 Solar System</h3>
+            <p>Explore the planets in our Solar System.</p>
+        </div>
+    </div>
+</section>
 
+<!-- MARS SIMULATOR -->
+<section id="mars-simulator">
+    <h2>🔴 Mars Mission Simulator</h2>
+    <p>Manage your resources and keep your Mars base alive for 10 days!</p>
 
-    <!-- SOLAR SYSTEM -->
-    <section id="solar-system">
+    <div class="mission-day">
+        <h3>Mission Day</h3>
+        <p id="mission-status">Day 1 / 10</p>
+    </div>
 
-        <h2>🪐 Solar System Explorer</h2>
+    <div class="resource-container">
 
-        <p>
-            Discover our Solar System!
-            Select any planet to explore interesting facts.
-        </p>
-
-        <div class="solar-system-scene">
-
-            <div class="sun">☀️</div>
-
-            <div class="orbit" style="width:90px;height:90px;animation-duration:8s;">
-                <div class="planet" onclick="showPlanetInfo('Mercury')" role="button" tabindex="0" aria-label="Mercury"></div>
-            </div>
-
-            <div class="orbit" style="width:145px;height:145px;animation-duration:12s;">
-                <div class="planet" onclick="showPlanetInfo('Venus')" role="button" tabindex="0" aria-label="Venus"></div>
-            </div>
-
-            <div class="orbit" style="width:200px;height:200px;animation-duration:16s;">
-                <div class="planet" onclick="showPlanetInfo('Earth')" role="button" tabindex="0" aria-label="Earth"></div>
-            </div>
-
-            <div class="orbit" style="width:255px;height:255px;animation-duration:20s;">
-                <div class="planet" onclick="showPlanetInfo('Mars')" role="button" tabindex="0" aria-label="Mars"></div>
-            </div>
-
-            <div class="orbit" style="width:310px;height:310px;animation-duration:25s;">
-                <div class="planet" onclick="showPlanetInfo('Jupiter')" role="button" tabindex="0" aria-label="Jupiter"></div>
-            </div>
-
-            <div class="orbit" style="width:365px;height:365px;animation-duration:30s;">
-                <div class="planet" onclick="showPlanetInfo('Saturn')" role="button" tabindex="0" aria-label="Saturn"></div>
-            </div>
-
-            <div class="orbit" style="width:420px;height:420px;animation-duration:35s;">
-                <div class="planet" onclick="showPlanetInfo('Uranus')" role="button" tabindex="0" aria-label="Uranus"></div>
-            </div>
-
-            <div class="orbit" style="width:475px;height:475px;animation-duration:40s;">
-                <div class="planet" onclick="showPlanetInfo('Neptune')" role="button" tabindex="0" aria-label="Neptune"></div>
-            </div>
-
+        <div class="resource-card">
+            <h3>🫁 Oxygen</h3>
+            <p id="oxygen">100</p>
+            <button onclick="manageResource('oxygen')">Generate Oxygen</button>
         </div>
 
-        <p class="space-note">
-            Mercury | Venus | Earth | Mars |
-            Jupiter | Saturn | Uranus | Neptune
-        </p>
-
-        <div id="planet-details" class="card" style="max-width:600px;margin:30px auto;">
-            <h3>🌌 Planet Information</h3>
-            <p>Select a planet to discover amazing facts!</p>
+        <div class="resource-card">
+            <h3>🛡️ Radiation Shield</h3>
+            <p id="shield">100</p>
+            <button onclick="manageResource('shield')">Improve Shield</button>
         </div>
 
-    </section>
-
-
-    <!-- AI ASSISTANT -->
-    <section id="assistant">
-
-        <h2>🤖 Nakshatra AI Space Assistant</h2>
-
-        <p>
-            Ask questions and discover interesting facts
-            about planets, stars and the universe!
-        </p>
-
-        <div class="chat-box" id="chat-box">
-
-            <p>
-                🤖 <strong>Assistant:</strong>
-                Hello Junior Astronaut! Welcome to Nakshatra AI.
-                Ask me anything about space!
-            </p>
-
+        <div class="resource-card">
+            <h3>⚡ Power</h3>
+            <p id="power">100</p>
+            <button onclick="manageResource('power')">Generate Power</button>
         </div>
 
-        <div class="chat-input">
-
-            <input
-                type="text"
-                id="user-input"
-                placeholder="Ask something about space..."
-                aria-label="Ask a space question"
-            >
-
-            <button onclick="sendMessage()">
-                Send 🚀
-            </button>
-
+        <div class="resource-card">
+            <h3>🥗 Food</h3>
+            <p id="food">100</p>
+            <button onclick="manageResource('food')">Grow Food</button>
         </div>
 
-    </section>
+    </div>
 
+    <div class="mission-panel">
+        <h3>📡 Mission Control</h3>
+        <p id="mission-message">Welcome, Astronaut! Keep your Mars base alive.</p>
+        <button onclick="checkMission()">Check Mission</button>
+        <button onclick="resetMission()">🔄 Restart Mission</button>
+    </div>
+</section>
 
-    <!-- QUIZ -->
-    <section id="quiz">
+<!-- SOLAR SYSTEM -->
+<section id="solar-system">
+    <h2>🪐 3D Solar System Explorer</h2>
+    <p>Explore all eight planets.</p>
 
-        <h2>🧠 Space Knowledge Quiz</h2>
+    <div class="solar-system-scene">
+        <div class="sun">☀️</div>
 
-        <p>
-            Test your space knowledge and become
-            a Junior Space Expert!
-        </p>
+        <div class="orbit mercury-orbit"><div class="planet mercury" onclick="showPlanetInfo('Mercury')"></div></div>
+        <div class="orbit venus-orbit"><div class="planet venus" onclick="showPlanetInfo('Venus')"></div></div>
+        <div class="orbit earth-orbit"><div class="planet earth" onclick="showPlanetInfo('Earth')"></div></div>
+        <div class="orbit mars-orbit"><div class="planet mars" onclick="showPlanetInfo('Mars')"></div></div>
+        <div class="orbit jupiter-orbit"><div class="planet jupiter" onclick="showPlanetInfo('Jupiter')"></div></div>
+        <div class="orbit saturn-orbit"><div class="planet saturn" onclick="showPlanetInfo('Saturn')"></div></div>
+        <div class="orbit uranus-orbit"><div class="planet uranus" onclick="showPlanetInfo('Uranus')"></div></div>
+        <div class="orbit neptune-orbit"><div class="planet neptune" onclick="showPlanetInfo('Neptune')"></div></div>
+    </div>
 
-        <div id="quiz-container">
+    <div id="planet-details" class="info-box">
+        Click a planet to discover interesting facts!
+    </div>
+</section>
 
-            <p>Are you ready to test your space knowledge?</p>
+<!-- AI ASSISTANT -->
+<section id="assistant">
+    <h2>🤖 Space AI Assistant</h2>
+    <p>Ask questions about space and astronaut training.</p>
 
-            <button onclick="startQuiz()">
-                Start Quiz 🚀
-            </button>
+    <div id="chat-box" class="chat-box">
+        <p class="bot-message">Hello Astronaut! Ask me something about space. 🚀</p>
+    </div>
 
-        </div>
+    <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Ask a space question..."
+        onkeydown="if(event.key==='Enter') sendMessage()">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</section>
 
-    </section>
+<!-- QUIZ -->
+<section id="quiz">
+    <h2>🧠 Astronaut Knowledge Quiz</h2>
+    <p>Test your space knowledge with 7 questions!</p>
 
+    <div id="quiz-container">
+        <button onclick="startQuiz()">Start Quiz 🚀</button>
+    </div>
 
-    <!-- FOOTER -->
-    <footer>
+    <div id="leaderboard"></div>
+</section>
 
-        <h3>🚀 Nakshatra AI</h3>
+<footer>
+    <p>© 2026 Nakshatra AI | Team AstraNova</p>
+    <p>Dream Beyond Earth, Innovate Beyond Limits 🌌</p>
+</footer>
 
-        <p>Dream Beyond Earth, Innovate Beyond Limits.</p>
-
-        <p>Junior Astronaut Mission Trainer | 2026</p>
-
-        <p>Explore • Learn • Discover • Imagine</p>
-
-        <p>Team AstraNova | NASA Space Apps Challenge 2026</p>
-
-    </footer>
-
-
-    <!-- JAVASCRIPT -->
-    <script src="script.js"></script>
-
+<script src="script.js"></script>
 </body>
-
 </html>
