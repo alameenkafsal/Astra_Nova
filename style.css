@@ -412,3 +412,23 @@ footer {
         transform: translate(-50%, -50%) rotate(360deg);
     }
 }
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+nav a {
+    display: inline-block;
+    white-space: nowrap;
+    margin: 0;
+}
+
+@media (max-width: 650px) {
+    nav {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
