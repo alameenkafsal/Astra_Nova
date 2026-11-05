@@ -368,3 +368,47 @@ footer {
         width: 90%;
     }
 }
+/* SOLAR SYSTEM ROTATION FIX */
+
+.orbit {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform-origin: center center;
+    animation-name: orbit-spin !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: infinite !important;
+}
+
+.mercury-orbit {
+    animation-duration: 5s !important;
+}
+
+.venus-orbit {
+    animation-duration: 8s !important;
+}
+
+.earth-orbit {
+    animation-duration: 11s !important;
+}
+
+.mars-orbit {
+    animation-duration: 15s !important;
+}
+
+.jupiter-orbit {
+    animation-duration: 20s !important;
+}
+
+.saturn-orbit {
+    animation-duration: 26s !important;
+}
+
+@keyframes orbit-spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
