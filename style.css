@@ -1,586 +1,676 @@
-// ===================================
-// NAKSHATRA AI - SPACE MISSION TRAINER
-// ===================================
+/* ==========================================
+   NAKSHATRA AI - JUNIOR ASTRONAUT TRAINER
+   COMPLETE WEBSITE STYLES
+========================================== */
 
-
-// START MISSION
-function startMission() {
-    alert("🚀 Welcome, Junior Astronaut! Your space mission is starting!");
-
-    document.getElementById("training").scrollIntoView({
-        behavior: "smooth"
-    });
+/* GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-
-// ===================================
-// PLANET INFORMATION
-// ===================================
-
-const planets = {
-
-    Mercury: {
-        name: "Mercury ☿",
-        type: "Smallest Planet",
-        temperature: "167°C average",
-        fact: "Mercury is the closest planet to the Sun."
-    },
-
-    Venus: {
-        name: "Venus ♀",
-        type: "Hottest Planet",
-        temperature: "464°C average",
-        fact: "Venus is the hottest planet in our Solar System."
-    },
-
-    Earth: {
-        name: "Earth 🌍",
-        type: "Our Home Planet",
-        temperature: "15°C average",
-        fact: "Earth is the only planet currently known to support life."
-    },
-
-    Mars: {
-        name: "Mars 🔴",
-        type: "The Red Planet",
-        temperature: "-65°C average",
-        fact: "Mars looks red because of iron oxide on its surface."
-    },
-
-    Jupiter: {
-        name: "Jupiter 🟠",
-        type: "Largest Planet",
-        temperature: "-110°C average",
-        fact: "Jupiter has a giant storm called the Great Red Spot."
-    },
-
-    Saturn: {
-        name: "Saturn 🪐",
-        type: "Ringed Planet",
-        temperature: "-140°C average",
-        fact: "Saturn has beautiful rings made mostly of ice and rock."
-    },
-
-    Uranus: {
-        name: "Uranus 🔵",
-        type: "Ice Giant",
-        temperature: "-195°C average",
-        fact: "Uranus rotates on its side."
-    },
-
-    Neptune: {
-        name: "Neptune 🔵",
-        type: "Farthest Planet",
-        temperature: "-200°C average",
-        fact: "Neptune has extremely strong winds."
-    }
-
-};
-
-
-// SHOW PLANET INFORMATION
-function showPlanetInfo(planetName) {
-
-    const planet = planets[planetName];
-
-    if (!planet) return;
-
-    const details = document.getElementById("planet-details");
-
-    details.innerHTML = `
-        <h3>${planet.name}</h3>
-        <p><strong>Category:</strong> ${planet.type}</p>
-        <p><strong>Temperature:</strong> ${planet.temperature}</p>
-        <p><strong>Interesting Fact:</strong> ${planet.fact}</p>
-    `;
-
-    details.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+:root {
+    --purple: #8b5cf6;
+    --light-purple: #c4b5fd;
+    --blue: #38bdf8;
+    --dark: #02010a;
+    --card: rgba(20, 15, 45, 0.9);
 }
 
-
-// ===================================
-// SPACE QUIZ QUESTIONS
-// ===================================
-
-const questions = [
-
-    {
-        question: "Which planet is known as the Red Planet?",
-        options: ["Earth", "Mars", "Venus", "Jupiter"],
-        answer: 1
-    },
-
-    {
-        question: "What is the closest star to Earth?",
-        options: ["Sirius", "Sun", "Polaris", "Vega"],
-        answer: 1
-    },
-
-    {
-        question: "How many planets are in our Solar System?",
-        options: ["7", "8", "9", "10"],
-        answer: 1
-    },
-
-    {
-        question: "Which planet has beautiful rings?",
-        options: ["Mars", "Earth", "Saturn", "Mercury"],
-        answer: 2
-    },
-
-    {
-        question: "What is Earth's natural satellite?",
-        options: ["Sun", "Moon", "Mars", "Venus"],
-        answer: 1
-    },
-
-    {
-        question: "Which is the largest planet?",
-        options: ["Earth", "Saturn", "Jupiter", "Neptune"],
-        answer: 2
-    },
-
-    {
-        question: "Who was the first human to walk on the Moon?",
-        options: [
-            "Yuri Gagarin",
-            "Neil Armstrong",
-            "Buzz Aldrin",
-            "John Glenn"
-        ],
-        answer: 1
-    },
-
-    {
-        question: "Which planet is farthest from the Sun?",
-        options: ["Uranus", "Saturn", "Neptune", "Jupiter"],
-        answer: 2
-    },
-
-    {
-        question: "Which planet is the hottest?",
-        options: ["Mercury", "Venus", "Mars", "Earth"],
-        answer: 1
-    },
-
-    {
-        question: "What force keeps planets in orbit?",
-        options: ["Friction", "Gravity", "Magnetism", "Electricity"],
-        answer: 1
-    }
-
-];
-
-
-let currentQuestion = 0;
-let score = 0;
-let timeLeft = 15;
-let quizTimer = null;
-
-
-// ===================================
-// START QUIZ
-// ===================================
-
-function startQuiz() {
-
-    clearInterval(quizTimer);
-
-    currentQuestion = 0;
-    score = 0;
-
-    showQuestion();
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: var(--dark);
+    background-image:
+        radial-gradient(circle at 15% 20%, rgba(90,30,180,.25), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0,120,255,.18), transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(100,30,180,.15), transparent 30%);
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
+/* NAVIGATION */
 
-// ===================================
-// SHOW QUESTION
-// ===================================
-
-function showQuestion() {
-
-    clearInterval(quizTimer);
-
-    const container = document.getElementById("quiz-container");
-
-    if (currentQuestion >= questions.length) {
-        finishQuiz();
-        return;
-    }
-
-    timeLeft = 15;
-
-    const q = questions[currentQuestion];
-
-    let html = `
-        <h3>🚀 Space Mission Quiz</h3>
-
-        <p>Question ${currentQuestion + 1} of ${questions.length}</p>
-
-        <p>🏆 Score: ${score}</p>
-
-        <div style="
-            width:100%;
-            background:#333;
-            height:10px;
-            border-radius:20px;
-            margin:15px 0;
-        ">
-            <div id="progress-bar" style="
-                width:${(currentQuestion / questions.length) * 100}%;
-                height:10px;
-                background:linear-gradient(90deg,#6500ff,#00c8ff);
-                border-radius:20px;
-            "></div>
-        </div>
-
-        <h3 id="timer">⏱️ Time: 15s</h3>
-
-        <h3 style="margin:20px 0;">
-            ${q.question}
-        </h3>
-
-        <div id="quiz-options">
-    `;
-
-    q.options.forEach((option, index) => {
-
-        html += `
-            <button
-                class="quiz-option"
-                onclick="checkAnswer(${index})"
-                style="
-                    display:block;
-                    width:100%;
-                    margin:10px 0;
-                "
-            >
-                ${option}
-            </button>
-        `;
-
-    });
-
-    html += `
-        </div>
-
-        <p id="quiz-feedback"></p>
-    `;
-
-    container.innerHTML = html;
-
-    startTimer();
+.navbar {
+    width: 100%;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(2, 1, 15, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(139,92,246,.3);
 }
 
-
-// ===================================
-// TIMER
-// ===================================
-
-function startTimer() {
-
-    clearInterval(quizTimer);
-
-    quizTimer = setInterval(() => {
-
-        timeLeft--;
-
-        const timer = document.getElementById("timer");
-
-        if (timer) {
-            timer.innerHTML = `⏱️ Time: ${timeLeft}s`;
-        }
-
-        if (timeLeft <= 0) {
-
-            clearInterval(quizTimer);
-
-            const feedback = document.getElementById("quiz-feedback");
-
-            if (feedback) {
-                feedback.innerHTML = "⏰ Time's Up!";
-            }
-
-            disableOptions();
-
-            setTimeout(() => {
-                currentQuestion++;
-                showQuestion();
-            }, 1200);
-
-        }
-
-    }, 1000);
+.navbar h2 {
+    color: var(--light-purple);
+    font-size: 25px;
 }
 
-
-// ===================================
-// CHECK ANSWER
-// ===================================
-
-function checkAnswer(selectedIndex) {
-
-    clearInterval(quizTimer);
-
-    const correctAnswer = questions[currentQuestion].answer;
-
-    const feedback = document.getElementById("quiz-feedback");
-
-    if (selectedIndex === correctAnswer) {
-
-        score += 10;
-
-        feedback.innerHTML = "✅ Correct! +10 Points 🚀";
-
-    } else {
-
-        feedback.innerHTML =
-            "❌ Incorrect! Correct answer: " +
-            questions[currentQuestion].options[correctAnswer];
-
-    }
-
-    disableOptions();
-
-    setTimeout(() => {
-
-        currentQuestion++;
-
-        showQuestion();
-
-    }, 1300);
+.nav-links {
+    display: flex;
+    gap: 22px;
+    align-items: center;
 }
 
-
-// DISABLE ANSWER BUTTONS
-function disableOptions() {
-
-    const buttons = document.querySelectorAll(".quiz-option");
-
-    buttons.forEach(button => {
-        button.disabled = true;
-        button.style.opacity = "0.6";
-        button.style.cursor = "not-allowed";
-    });
-
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
 }
 
-
-// ===================================
-// FINISH QUIZ
-// ===================================
-
-function finishQuiz() {
-
-    clearInterval(quizTimer);
-
-    const container = document.getElementById("quiz-container");
-
-    let level = "";
-    let badge = "";
-
-    if (score >= 90) {
-        level = "Space Commander";
-        badge = "🏆";
-    }
-
-    else if (score >= 70) {
-        level = "Senior Astronaut";
-        badge = "🥇";
-    }
-
-    else if (score >= 40) {
-        level = "Junior Astronaut";
-        badge = "🥈";
-    }
-
-    else {
-        level = "Space Trainee";
-        badge = "⭐";
-    }
-
-    saveScore(score);
-
-    container.innerHTML = `
-        <h2>🎉 Mission Completed!</h2>
-
-        <h1 style="font-size:45px;">${badge}</h1>
-
-        <h3>${level}</h3>
-
-        <h2>🏆 ${score} / 100</h2>
-
-        <p>You completed your Space Knowledge Mission!</p>
-
-        <button onclick="startQuiz()">
-            Play Again 🚀
-        </button>
-
-        <button onclick="showLeaderboard()">
-            View Leaderboard 🥇
-        </button>
-    `;
+.navbar a:hover {
+    color: var(--blue);
 }
 
+/* SECTIONS */
 
-// ===================================
-// LEADERBOARD
-// ===================================
-
-function saveScore(newScore) {
-
-    let scores = JSON.parse(
-        localStorage.getItem("nakshatraScores") || "[]"
-    );
-
-    scores.push(newScore);
-
-    scores.sort((a, b) => b - a);
-
-    scores = scores.slice(0, 5);
-
-    localStorage.setItem(
-        "nakshatraScores",
-        JSON.stringify(scores)
-    );
-
+section {
+    padding: 85px 8%;
+    text-align: center;
+    scroll-margin-top: 80px;
 }
 
-
-function showLeaderboard() {
-
-    const container = document.getElementById("quiz-container");
-
-    const scores = JSON.parse(
-        localStorage.getItem("nakshatraScores") || "[]"
-    );
-
-    let html = `
-        <h2>🥇 Space Leaderboard</h2>
-        <p>Top 5 Scores</p>
-    `;
-
-    if (scores.length === 0) {
-        html += "<p>No scores yet. Play the quiz first!</p>";
-    }
-
-    scores.forEach((item, index) => {
-
-        html += `
-            <p style="margin:12px;">
-                ${index + 1}. ${item} Points
-            </p>
-        `;
-
-    });
-
-    html += `
-        <button onclick="startQuiz()">Play Again 🚀</button>
-    `;
-
-    container.innerHTML = html;
-
+section h2 {
+    color: var(--light-purple);
+    font-size: 32px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 15px rgba(139,92,246,.5);
 }
 
+section p {
+    color: #d1d5db;
+}
 
-// ===================================
-// AI SPACE ASSISTANT
-// ===================================
+/* HOME / HERO */
 
-function sendMessage() {
+.hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+}
 
-    const input = document.getElementById("user-input");
+.hero h1 {
+    font-size: clamp(38px, 7vw, 65px);
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 0 0 25px var(--purple);
+}
 
-    const chatBox = document.getElementById("chat-box");
+.hero p {
+    max-width: 700px;
+    font-size: 18px;
+    color: #d1d5db;
+    margin-bottom: 30px;
+}
 
-    const message = input.value.trim().toLowerCase();
+/* BUTTONS */
 
-    if (message === "") {
-        alert("Please enter a question!");
-        return;
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    padding: 13px 25px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(139,92,246,.6);
+}
+
+/* CARDS */
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.card {
+    width: 280px;
+    padding: 28px;
+    background: var(--card);
+    border: 1px solid rgba(139,92,246,.5);
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(90,40,255,.15);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--blue);
+    box-shadow: 0 0 25px rgba(56,189,248,.25);
+}
+
+.card h3 {
+    color: var(--light-purple);
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #d1d5db;
+}
+
+/* ==========================================
+   MARS SIMULATOR
+========================================== */
+
+.mission-day {
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid var(--blue);
+    border-radius: 18px;
+}
+
+.mission-day p {
+    font-size: 25px;
+    color: var(--blue);
+    font-weight: bold;
+}
+
+.resource-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 35px auto;
+}
+
+.resource-card {
+    width: 260px;
+    min-height: 220px;
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid var(--purple);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 18px rgba(90,40,255,.25);
+    transition: .3s;
+}
+
+.resource-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--blue);
+}
+
+.resource-card h3 {
+    color: var(--light-purple);
+    font-size: 21px;
+}
+
+.resource-card p {
+    color: var(--blue);
+    font-size: 35px;
+    font-weight: bold;
+    margin: 15px;
+}
+
+.resource-card button {
+    width: 100%;
+    font-size: 13px;
+}
+
+.mission-panel {
+    max-width: 750px;
+    margin: 35px auto;
+    padding: 30px;
+    background: var(--card);
+    border: 1px solid var(--blue);
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(0,200,255,.2);
+}
+
+.mission-panel h3 {
+    color: var(--blue);
+    margin-bottom: 15px;
+}
+
+.mission-panel p {
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* ==========================================
+   SOLAR SYSTEM
+========================================== */
+
+.solar-system-scene {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    height: 540px;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sun {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background: radial-gradient(circle, #fff7ae, #ff9900, #ff4500);
+    border-radius: 50%;
+    box-shadow: 0 0 30px #ff9900, 0 0 60px #ff6600;
+    z-index: 5;
+}
+
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(150,150,255,.35);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotateOrbit linear infinite;
+}
+
+.orbit:nth-of-type(2) {
+    width: 100px;
+    height: 100px;
+    animation-duration: 8s;
+}
+
+.orbit:nth-of-type(3) {
+    width: 145px;
+    height: 145px;
+    animation-duration: 12s;
+}
+
+.orbit:nth-of-type(4) {
+    width: 195px;
+    height: 195px;
+    animation-duration: 16s;
+}
+
+.orbit:nth-of-type(5) {
+    width: 245px;
+    height: 245px;
+    animation-duration: 20s;
+}
+
+.orbit:nth-of-type(6) {
+    width: 310px;
+    height: 310px;
+    animation-duration: 25s;
+}
+
+.orbit:nth-of-type(7) {
+    width: 375px;
+    height: 375px;
+    animation-duration: 30s;
+}
+
+.orbit:nth-of-type(8) {
+    width: 440px;
+    height: 440px;
+    animation-duration: 35s;
+}
+
+.orbit:nth-of-type(9) {
+    width: 510px;
+    height: 510px;
+    animation-duration: 40s;
+}
+
+.planet {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.planet:hover {
+    filter: brightness(1.5);
+    box-shadow: 0 0 20px white;
+}
+
+/* PLANET SIZES AND COLOURS */
+
+.orbit:nth-of-type(2) .planet {
+    width: 12px;
+    height: 12px;
+    background: #aaa;
+}
+
+.orbit:nth-of-type(3) .planet {
+    width: 17px;
+    height: 17px;
+    background: #e6a45c;
+}
+
+.orbit:nth-of-type(4) .planet {
+    width: 19px;
+    height: 19px;
+    background: #1689ff;
+    box-shadow: inset -5px -3px 5px #064080;
+}
+
+.orbit:nth-of-type(5) .planet {
+    width: 15px;
+    height: 15px;
+    background: #d94b25;
+}
+
+.orbit:nth-of-type(6) .planet {
+    width: 38px;
+    height: 38px;
+    background: #d9a066;
+}
+
+.orbit:nth-of-type(7) .planet {
+    width: 33px;
+    height: 33px;
+    background: #d9bd83;
+}
+
+.orbit:nth-of-type(8) .planet {
+    width: 27px;
+    height: 27px;
+    background: #65d9e8;
+}
+
+.orbit:nth-of-type(9) .planet {
+    width: 25px;
+    height: 25px;
+    background: #315bdb;
+}
+
+@keyframes rotateOrbit {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+#planet-details {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid var(--blue);
+    border-radius: 15px;
+    min-height: 70px;
+}
+
+/* ==========================================
+   AI ASSISTANT
+========================================== */
+
+#assistant {
+    max-width: 900px;
+    margin: auto;
+}
+
+.chat-box {
+    max-width: 700px;
+    min-height: 220px;
+    max-height: 350px;
+    overflow-y: auto;
+    margin: 25px auto;
+    padding: 20px;
+    text-align: left;
+    background: rgba(15,10,35,.95);
+    border: 1px solid var(--purple);
+    border-radius: 15px;
+}
+
+.chat-box p {
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(139,92,246,.15);
+    border-radius: 10px;
+}
+
+.chat-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 700px;
+    margin: auto;
+}
+
+#user-input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+    border-radius: 25px;
+    border: 1px solid var(--purple);
+    background: #100d25;
+    color: white;
+    outline: none;
+}
+
+#user-input::placeholder {
+    color: #aaa;
+}
+
+/* ==========================================
+   QUIZ
+========================================== */
+
+#quiz-container {
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 30px;
+    background: var(--card);
+    border: 1px solid var(--purple);
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(139,92,246,.2);
+}
+
+#quiz-container h3 {
+    color: var(--light-purple);
+    margin-bottom: 20px;
+}
+
+#quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.quiz-option {
+    width: 100%;
+    background: rgba(100,70,180,.2);
+    border: 1px solid var(--purple);
+    border-radius: 10px;
+    text-align: left;
+}
+
+.quiz-option:hover {
+    background: rgba(56,189,248,.25);
+}
+
+#quiz-feedback {
+    margin: 15px;
+    font-weight: bold;
+}
+
+#timer {
+    color: var(--blue);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.quiz-progress {
+    height: 8px;
+    background: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.quiz-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--blue));
+    width: 0%;
+}
+
+/* LEADERBOARD */
+
+#leaderboard {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid var(--blue);
+    border-radius: 15px;
+}
+
+#leaderboard h3 {
+    color: var(--light-purple);
+    margin-bottom: 15px;
+}
+
+#leaderboard p {
+    padding: 8px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+/* FOOTER */
+
+footer {
+    padding: 30px 15px;
+    text-align: center;
+    background: #05030e;
+    border-top: 1px solid rgba(139,92,246,.3);
+    color: #aaa;
+    margin-top: 50px;
+}
+
+/* ANIMATIONS */
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 10px var(--purple);
+    }
+    50% {
+        text-shadow: 0 0 25px var(--blue);
+    }
+}
+
+.hero h1 {
+    animation: glow 3s infinite;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 850px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
     }
 
-    const userMessage = document.createElement("p");
-
-    userMessage.innerHTML = "<strong>🧑‍🚀 You:</strong> ";
-
-    userMessage.textContent += input.value;
-
-    chatBox.appendChild(userMessage);
-
-    let reply = "Ask me about planets, Mars, Moon, Sun or gravity!";
-
-    if (message.includes("mars")) {
-        reply = "Mars is called the Red Planet. It has two moons: Phobos and Deimos.";
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 13px;
     }
 
-    else if (message.includes("moon")) {
-        reply = "The Moon is Earth's natural satellite.";
+    section {
+        padding: 65px 5%;
     }
 
-    else if (message.includes("sun")) {
-        reply = "The Sun is a star at the centre of our Solar System.";
+    .solar-system-scene {
+        transform: scale(.85);
+        transform-origin: center;
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .hero {
+        min-height: 70vh;
     }
 
-    else if (message.includes("earth")) {
-        reply = "Earth is our home planet and supports life.";
+    .hero h1 {
+        font-size: 38px;
     }
 
-    else if (message.includes("jupiter")) {
-        reply = "Jupiter is the largest planet in our Solar System.";
+    section h2 {
+        font-size: 26px;
     }
 
-    else if (message.includes("saturn")) {
-        reply = "Saturn is famous for its beautiful rings.";
+    .card {
+        width: 100%;
+        max-width: 380px;
     }
 
-    else if (message.includes("uranus")) {
-        reply = "Uranus is an ice giant that rotates on its side.";
+    .resource-card {
+        width: 100%;
+        max-width: 380px;
     }
 
-    else if (message.includes("neptune")) {
-        reply = "Neptune is the farthest planet from the Sun.";
+    .mission-panel {
+        padding: 20px 12px;
     }
 
-    else if (message.includes("mercury")) {
-        reply = "Mercury is the smallest planet and closest to the Sun.";
+    .chat-input {
+        flex-direction: column;
     }
 
-    else if (message.includes("venus")) {
-        reply = "Venus is the hottest planet in our Solar System.";
+    .chat-input button {
+        width: 100%;
     }
 
-    else if (message.includes("astronaut")) {
-        reply = "Astronauts are trained people who travel and work in space.";
+    .solar-system-scene {
+        transform: scale(.58);
+        transform-origin: center;
+        margin: -80px auto;
+        width: 650px;
+        left: 50%;
+        position: relative;
+        margin-left: -325px;
     }
 
-    else if (message.includes("gravity")) {
-        reply = "Gravity is the force that attracts objects towards each other.";
+    #quiz-container {
+        padding: 20px 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .navbar h2 {
+        font-size: 21px;
     }
 
-    else if (message.includes("planet")) {
-        reply = "Our Solar System has eight planets!";
+    .nav-links {
+        gap: 9px;
     }
 
-    else if (
-        message.includes("hello") ||
-        message.includes("hi")
-    ) {
-        reply = "Hello Junior Astronaut! 🚀 Ready to explore space?";
+    .navbar a {
+        font-size: 12px;
     }
-
-    const assistantMessage = document.createElement("p");
-
-    assistantMessage.innerHTML = "<strong>🤖 Assistant:</strong> ";
-
-    assistantMessage.textContent += reply;
-
-    chatBox.appendChild(assistantMessage);
-
-    input.value = "";
-
-    chatBox.scrollTop = chatBox.scrollHeight;
 }
