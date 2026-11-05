@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="Nakshatra AI - An interactive Junior Astronaut Mission Trainer. Explore planets, complete missions and learn about space.">
 
     <title>Nakshatra AI | Junior Astronaut Mission Trainer</title>
 
@@ -15,88 +12,72 @@
 <body>
 
     <!-- NAVIGATION -->
-    <nav class="navbar">
-        <a href="#home">🏠 Home</a>
-        <a href="#training">🎓 Training</a>
-        <a href="#missions">🚀 Missions</a>
-        <a href="#solar-system">🪐 3D Space</a>
-        <a href="#assistant">🤖 AI Assistant</a>
-        <a href="#quiz">🏆 Quiz</a>
-    </nav>
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">🚀 Nakshatra AI</h2>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#training">Training</a></li>
+                <li><a href="#missions">Missions</a></li>
+                <li><a href="#solar-system">3D Space</a></li>
+                <li><a href="#assistant">AI Assistant</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
 
 
-    <!-- HOME SECTION -->
-    <section id="home" class="hero">
+    <!-- HOME -->
+    <section id="home" class="hero section">
 
-        <h1>🚀 Nakshatra AI</h1>
+        <div class="hero-content">
+            <h1>Welcome to Nakshatra AI 🌌</h1>
 
-        <h2>Dream Beyond Earth!</h2>
+            <h2>Junior Astronaut Mission Trainer</h2>
 
-        <p>
-            Become a Young Astronaut and Explore the Wonders of Space.
-            Learn about planets, complete exciting missions and test
-            your space knowledge through interactive activities.
-        </p>
+            <p>Dream Beyond Earth, Innovate Beyond Limits.</p>
 
-        <button type="button" onclick="startMission()">
-            Start Your Mission 🚀
-        </button>
+            <button onclick="startMission()">
+                Start Your Mission 🚀
+            </button>
+        </div>
 
     </section>
 
 
     <!-- ASTRONAUT TRAINING -->
-    <section id="training">
+    <section id="training" class="section">
 
-        <h2>👨‍🚀 Astronaut Training</h2>
+        <h2>🧑‍🚀 Astronaut Training</h2>
 
-        <p>
-            Complete your basic astronaut training before starting
-            your exciting space journey.
-        </p>
+        <p>Welcome, Junior Astronaut! Complete your training activities.</p>
 
-        <div class="card-container">
+        <div class="cards">
 
             <div class="card">
                 <h3>🧑‍🚀 Space Suit Training</h3>
+                <p>Learn about astronaut space suits and safety equipment.</p>
 
-                <p>
-                    Learn about astronaut space suits, their
-                    components and their importance in space.
-                </p>
-
-                <button type="button"
-                    onclick="alert('Welcome to Space Suit Training!')">
+                <button onclick="alert('Space Suit Training Started!')">
                     Start Training
                 </button>
             </div>
 
-
             <div class="card">
-                <h3>🌌 Space Environment</h3>
+                <h3>🌍 Zero Gravity Training</h3>
+                <p>Discover how astronauts move in a zero-gravity environment.</p>
 
-                <p>
-                    Discover gravity, microgravity, space conditions
-                    and how astronauts survive in outer space.
-                </p>
-
-                <button type="button"
-                    onclick="alert('Welcome to Space Environment Training!')">
-                    Explore
+                <button onclick="alert('Zero Gravity Training Started!')">
+                    Start Training
                 </button>
             </div>
 
-
             <div class="card">
-                <h3>🛰️ Space Station Training</h3>
+                <h3>🚀 Rocket Training</h3>
+                <p>Learn about rockets, launch systems and space travel.</p>
 
-                <p>
-                    Learn how astronauts live, communicate and
-                    perform scientific experiments in space stations.
-                </p>
-
-                <button type="button"
-                    onclick="alert('Welcome to Space Station Training!')">
+                <button onclick="alert('Rocket Training Started!')">
                     Start Training
                 </button>
             </div>
@@ -107,64 +88,39 @@
 
 
     <!-- SPACE MISSIONS -->
-    <section id="missions">
+    <section id="missions" class="section">
 
-        <h2>🌍 Space Missions</h2>
+        <h2>🚀 Space Missions</h2>
 
-        <p>
-            Choose your mission and become an explorer of the universe!
-        </p>
+        <p>Explore exciting missions beyond Earth.</p>
 
-        <div class="card-container">
+        <div class="cards">
 
             <div class="card">
+                <h3>🌙 Moon Mission</h3>
+                <p>Discover the Moon and learn about lunar exploration.</p>
 
-                <h3>🌕 Moon Mission</h3>
-
-                <p>
-                    Explore Earth's natural satellite and discover
-                    amazing facts about the Moon.
-                </p>
-
-                <button type="button"
-                    onclick="alert('🌕 Moon Mission Started!')">
-                    Start Mission
+                <button onclick="alert('Moon Mission Started!')">
+                    Explore Moon
                 </button>
-
             </div>
 
-
             <div class="card">
-
                 <h3>🔴 Mars Mission</h3>
+                <p>Explore the Red Planet and discover its mysteries.</p>
 
-                <p>
-                    Discover the Red Planet and explore the
-                    possibilities of future human missions to Mars.
-                </p>
-
-                <button type="button"
-                    onclick="alert('🔴 Mars Mission Started!')">
-                    Start Mission
+                <button onclick="alert('Mars Mission Started!')">
+                    Explore Mars
                 </button>
-
             </div>
 
-
             <div class="card">
+                <h3>🛰️ Satellite Mission</h3>
+                <p>Learn how satellites help us understand our planet.</p>
 
-                <h3>🪐 Solar System Mission</h3>
-
-                <p>
-                    Travel through our Solar System and discover
-                    all eight planets.
-                </p>
-
-                <button type="button"
-                    onclick="document.getElementById('solar-system').scrollIntoView({behavior:'smooth'})">
-                    Explore Planets
+                <button onclick="alert('Satellite Mission Started!')">
+                    Explore Satellites
                 </button>
-
             </div>
 
         </div>
@@ -172,195 +128,83 @@
     </section>
 
 
-    <!-- SOLAR SYSTEM EXPLORER -->
-    <section id="solar-system">
+    <!-- SOLAR SYSTEM -->
+    <section id="solar-system" class="section">
 
-        <h2>🪐 Solar System Explorer</h2>
+        <h2>🌌 3D Solar System Explorer</h2>
 
-        <p>
-            Discover our Solar System! Select any planet
-            to explore interesting facts.
-        </p>
-
+        <p>Explore the planets revolving around the Sun.</p>
 
         <div class="solar-system-scene">
 
-            <!-- SUN -->
-            <div class="sun">☀️</div>
+            <div class="sun"></div>
 
-
-            <!-- MERCURY -->
-            <div class="orbit"
-                style="width:90px;height:90px;animation-duration:8s;">
-
-                <div class="planet"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Mercury"
-                    onclick="showPlanetInfo('Mercury')">
-                </div>
-
+            <div class="orbit">
+                <div class="planet mercury"></div>
             </div>
 
-
-            <!-- VENUS -->
-            <div class="orbit"
-                style="width:145px;height:145px;animation-duration:12s;">
-
-                <div class="planet"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Venus"
-                    onclick="showPlanetInfo('Venus')">
-                </div>
-
+            <div class="orbit">
+                <div class="planet venus"></div>
             </div>
 
-
-            <!-- EARTH -->
-            <div class="orbit"
-                style="width:200px;height:200px;animation-duration:16s;">
-
-                <div class="planet"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Earth"
-                    onclick="showPlanetInfo('Earth')">
-                </div>
-
+            <div class="orbit">
+                <div class="planet earth"></div>
             </div>
 
-
-            <!-- MARS -->
-            <div class="orbit"
-                style="width:255px;height:255px;animation-duration:20s;">
-
-                <div class="planet"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Mars"
-                    onclick="showPlanetInfo('Mars')">
-                </div>
-
+            <div class="orbit">
+                <div class="planet mars"></div>
             </div>
 
-
-            <!-- JUPITER -->
-            <div class="orbit"
-                style="width:310px;height:310px;animation-duration:25s;">
-
-                <div class="planet"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Jupiter"
-                    onclick="showPlanetInfo('Jupiter')">
-                </div>
-
+            <div class="orbit">
+                <div class="planet jupiter"></div>
             </div>
 
-
-            <!-- SATURN -->
-            <div class="orbit"
-                style="width:365px;height:365px;animation-duration:30s;">
-
-                <div class="planet"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Saturn"
-                    onclick="showPlanetInfo('Saturn')">
-                </div>
-
+            <div class="orbit">
+                <div class="planet saturn"></div>
             </div>
 
-
-            <!-- URANUS -->
-            <div class="orbit"
-                style="width:420px;height:420px;animation-duration:35s;">
-
-                <div class="planet"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Uranus"
-                    onclick="showPlanetInfo('Uranus')">
-                </div>
-
+            <div class="orbit">
+                <div class="planet uranus"></div>
             </div>
 
-
-            <!-- NEPTUNE -->
-            <div class="orbit"
-                style="width:475px;height:475px;animation-duration:40s;">
-
-                <div class="planet"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Neptune"
-                    onclick="showPlanetInfo('Neptune')">
-                </div>
-
+            <div class="orbit">
+                <div class="planet neptune"></div>
             </div>
 
         </div>
 
-
-        <p class="space-note">
-            Mercury | Venus | Earth | Mars |
-            Jupiter | Saturn | Uranus | Neptune
-        </p>
-
-
-        <!-- PLANET INFORMATION -->
-        <div id="planet-details" class="card"
-            style="width:100%;max-width:600px;margin:30px auto;">
-
-            <h3>🌌 Planet Information</h3>
-
-            <p>
-                Select a planet above to discover
-                its amazing features and facts!
-            </p>
-
+        <div id="planet-details" class="card">
+            <h3>🪐 Planet Information</h3>
+            <p>Explore the solar system and learn about its planets.</p>
         </div>
 
     </section>
 
 
     <!-- AI SPACE ASSISTANT -->
-    <section id="assistant">
+    <section id="assistant" class="section">
 
-        <h2>🤖 Nakshatra AI Space Assistant</h2>
+        <h2>🤖 AI Space Assistant</h2>
 
-        <p>
-            Ask questions and discover interesting facts
-            about planets, stars and the universe!
-        </p>
+        <p>Ask questions and learn interesting facts about space.</p>
 
+        <div class="chat-container">
 
-        <!-- CHAT AREA -->
-        <div class="chat-box" id="chat-box">
+            <div id="chat-box" class="chat-box">
+                <p><strong>AI Assistant:</strong> Hello Junior Astronaut! Ask me anything about space. 🚀</p>
+            </div>
 
-            <p>
-                🤖 <strong>Assistant:</strong>
-                Hello Junior Astronaut! Welcome to Nakshatra AI.
-                Ask me anything about space!
-            </p>
+            <div class="chat-input">
+                <input
+                    type="text"
+                    id="user-input"
+                    placeholder="Ask something about space..."
+                >
 
-        </div>
-
-
-        <!-- CHAT INPUT -->
-        <div class="chat-input">
-
-            <input
-                type="text"
-                id="user-input"
-                placeholder="Ask something about space..."
-                aria-label="Ask a space question"
-            >
-
-            <button type="button" onclick="sendMessage()">
-                Send 🚀
-            </button>
+                <button onclick="sendMessage()">
+                    Send
+                </button>
+            </div>
 
         </div>
 
@@ -368,23 +212,15 @@
 
 
     <!-- SPACE QUIZ -->
-    <section id="quiz">
+    <section id="quiz" class="section">
 
-        <h2>🧠 Space Knowledge Quiz</h2>
+        <h2>🧠 Space Quiz Challenge</h2>
 
-        <p>
-            Test your space knowledge and become
-            a Junior Space Expert!
-        </p>
-
+        <p>Test your space knowledge and become a Space Champion!</p>
 
         <div id="quiz-container">
 
-            <p>
-                Are you ready to test your space knowledge?
-            </p>
-
-            <button type="button" onclick="startQuiz()">
+            <button onclick="startQuiz()">
                 Start Quiz 🚀
             </button>
 
@@ -394,28 +230,20 @@
 
 
     <!-- FOOTER -->
-    <footer>
+    <footer class="footer">
 
         <h3>🚀 Nakshatra AI</h3>
 
-        <p>
-            Dream Beyond Earth, Innovate Beyond Limits.
-        </p>
+        <p>Junior Astronaut Mission Trainer</p>
 
-        <p>
-            Junior Astronaut Mission Trainer | 2026
-        </p>
+        <p>Dream Beyond Earth, Innovate Beyond Limits.</p>
 
-        <p>
-            Explore • Learn • Discover • Imagine
-        </p>
+        <p>© 2026 Nakshatra AI. All Rights Reserved.</p>
 
     </footer>
 
 
-    <!-- JAVASCRIPT -->
     <script src="script.js"></script>
 
 </body>
-
 </html>
