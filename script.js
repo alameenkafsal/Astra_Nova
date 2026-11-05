@@ -1,7 +1,6 @@
 // ==========================================
-// NAKSHATRA AI
-// JUNIOR ASTRONAUT MISSION TRAINER
-// TEAM ASTRANOVA - 2026
+// NAKSHATRA AI - JUNIOR ASTRONAUT TRAINER
+// COMPLETE JAVASCRIPT
 // ==========================================
 
 
@@ -11,7 +10,7 @@
 
 function startMission() {
 
-    alert("🚀 Welcome, Junior Astronaut! Your space mission is starting!");
+    alert("🚀 Welcome, Junior Astronaut! Your mission is starting!");
 
     document.getElementById("training").scrollIntoView({
         behavior: "smooth"
@@ -21,7 +20,7 @@ function startMission() {
 
 
 // ==========================================
-// PLANET INFORMATION
+// PLANET INFORMATION - ALL 8 PLANETS
 // ==========================================
 
 const planets = {
@@ -95,13 +94,12 @@ function showPlanetInfo(planetName) {
 
     const details = document.getElementById("planet-details");
 
+    if (!details) return;
+
     details.innerHTML = `
         <h3>${planet.name}</h3>
-
         <p><strong>Category:</strong> ${planet.type}</p>
-
         <p><strong>Temperature:</strong> ${planet.temperature}</p>
-
         <p><strong>Interesting Fact:</strong> ${planet.fact}</p>
     `;
 
@@ -116,9 +114,6 @@ function showPlanetInfo(planetName) {
 // ==========================================
 // MARS MISSION SIMULATOR
 // ==========================================
-
-// Educational simulation values.
-// These are game values, not real Mars mission data.
 
 let marsResources = {
     oxygen: 100,
@@ -136,255 +131,26 @@ let marsMissionWon = false;
 
 function updateMarsDisplay() {
 
-    document.getElementById("oxygen").textContent =
-        marsResources.oxygen + "%";
-
-    document.getElementById("shield").textContent =
-        marsResources.shield + "%";
-
-    document.getElementById("power").textContent =
-        marsResources.power + "%";
-
-    document.getElementById("food").textContent =
-        marsResources.food + "%";
-
-}
-
-
-// RESOURCE MANAGEMENT
-
-function manageResource(resource) {
-
-    if (marsGameOver) {
-        alert("Mission ended! Please restart the mission.");
-        return;
-    }
-
-    let message = "";
-
-    switch (resource) {
-
-        case "oxygen":
-
-            if (marsResources.power < 10) {
-                alert("⚠️ Not enough power to restore oxygen!");
-                return;
-            }
-
-            marsResources.power -= 10;
-
-            marsResources.oxygen = Math.min(
-                100,
-                marsResources.oxygen + 25
-            );
-
-            message = "🫁 Oxygen system restored using 10% power!";
-
-            break;
-
-
-        case "shield":
-
-            if (marsResources.power < 15) {
-                alert("⚠️ Not enough power to improve radiation shielding!");
-                return;
-            }
-
-            marsResources.power -= 15;
-
-            marsResources.shield = Math.min(
-                100,
-                marsResources.shield + 25
-            );
-
-            message = "🛡️ Radiation protection improved!";
-
-            break;
-
-
-        case "power":
-
-            marsResources.power = Math.min(
-                100,
-                marsResources.power + 30
-            );
-
-            message = "⚡ Solar panels generated 30% additional power!";
-
-            break;
-
-
-        case "food":
-
-            if (marsResources.power < 15) {
-                alert("⚠️ Not enough power for food production!");
-                return;
-            }
-
-            marsResources.power -= 15;
-
-            marsResources.food = Math.min(
-                100,
-                marsResources.food + 30
-            );
-
-            message = "🌱 Food production successful!";
-
-            break;
-
-
-        default:
-
-            return;
-
-    }
-
-
-    // EVERY ACTION USES ONE SIMULATED DAY
-
-    marsResources.oxygen = Math.max(
-        0,
-        marsResources.oxygen - 5
-    );
-
-    marsResources.shield = Math.max(
-        0,
-        marsResources.shield - 3
-    );
-
-    marsResources.power = Math.max(
-        0,
-        marsResources.power - 4
-    );
-
-    marsResources.food = Math.max(
-        0,
-        marsResources.food - 6
-    );
-
-    marsDay++;
-
-    updateMarsDisplay();
-
-    checkMarsSurvival(message);
-
-}
-
-
-// CHECK MISSION SURVIVAL
-
-function checkMarsSurvival(message = "") {
+    const oxygen = document.getElementById("oxygen");
+    const shield = document.getElementById("shield");
+    const power = document.getElementById("power");
+    const food = document.getElementById("food");
 
     const status = document.getElementById("mission-status");
 
-    const missionMessage = document.getElementById("mission-message");
+    if (oxygen) oxygen.textContent = marsResources.oxygen + "%";
+    if (shield) shield.textContent = marsResources.shield + "%";
+    if (power) power.textContent = marsResources.power + "%";
+    if (food) food.textContent = marsResources.food + "%";
 
-    if (
-        marsResources.oxygen <= 0 ||
-        marsResources.shield <= 0 ||
-        marsResources.power <= 0 ||
-        marsResources.food <= 0
-    ) {
-
-        marsGameOver = true;
-
-        status.textContent = "🔴 Mission Failed!";
-
-        status.style.color = "#ff4444";
-
-        missionMessage.textContent =
-            "One or more critical resources have been exhausted. Your Mars outpost needs a restart.";
-
-        alert("🚨 Mission Failed! Restart and try again.");
-
-        return;
-
-    }
-
-
-    if (marsDay > 10) {
-
-        marsGameOver = true;
-
-        marsMissionWon = true;
-
-        status.textContent = "🏆 Mission Successful!";
-
-        status.style.color = "#00ff99";
-
-        missionMessage.textContent =
-            "Congratulations Commander! Your astronauts successfully survived 10 simulated Mars days!";
-
-        alert("🏆 Congratulations! Mars Mission Successfully Completed!");
-
-        return;
-
-    }
-
-
-    status.textContent = "🟢 Mission Active - Day " + marsDay;
-
-    status.style.color = "#00ff99";
-
-    missionMessage.textContent =
-        message + " Your outpost survived. Keep managing your resources!";
-
-}
-
-
-// CHECK MISSION STATUS BUTTON
-
-function checkMission() {
-
-    const status = document.getElementById("mission-status");
-
-    const missionMessage = document.getElementById("mission-message");
-
-    if (marsGameOver) {
-
-        missionMessage.textContent = marsMissionWon
-            ? "🏆 Mission completed successfully!"
-            : "Mission failed. Restart to try again.";
-
-        return;
-
-    }
-
-    const resources = [
-        marsResources.oxygen,
-        marsResources.shield,
-        marsResources.power,
-        marsResources.food
-    ];
-
-    const minimum = Math.min(...resources);
-
-    if (minimum < 25) {
-
-        status.textContent = "⚠️ Warning! Critical Resources!";
-
-        status.style.color = "#ffb347";
-
-        missionMessage.textContent =
-            "Some resources are running low. Take action immediately!";
-
-    }
-
-    else {
-
-        status.textContent = "🟢 Mission Stable - Day " + marsDay;
-
-        status.style.color = "#00ff99";
-
-        missionMessage.textContent =
-            "All systems are operating within safe game levels. Keep going!";
-
+    if (status) {
+        status.textContent = "Day " + marsDay + " / 10";
     }
 
 }
 
 
-// RESTART MARS MISSION
+// RESET MISSION
 
 function resetMission() {
 
@@ -396,36 +162,155 @@ function resetMission() {
     };
 
     marsDay = 1;
-
     marsGameOver = false;
-
     marsMissionWon = false;
 
     updateMarsDisplay();
 
-    document.getElementById("mission-status").textContent =
-        "🟢 Mission Ready!";
+    const message = document.getElementById("mission-message");
 
-    document.getElementById("mission-status").style.color =
-        "#00ff99";
-
-    document.getElementById("mission-message").textContent =
-        "Welcome back Commander! Your Mars outpost is ready.";
+    if (message) {
+        message.innerHTML =
+            "🚀 Your Mars mission is ready! Manage resources carefully and survive for 10 days.";
+    }
 
 }
 
 
-// INITIALIZE MARS SIMULATOR
+// MANAGE RESOURCES
 
-document.addEventListener("DOMContentLoaded", function () {
+function manageResource(resource) {
+
+    if (marsGameOver || marsMissionWon) {
+        alert("Please reset the mission to play again!");
+        return;
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(marsResources, resource)) {
+        return;
+    }
+
+    let amount = 25;
+    let powerCost = 0;
+
+    if (resource === "oxygen") {
+        powerCost = 10;
+    }
+
+    else if (resource === "shield") {
+        powerCost = 15;
+    }
+
+    else if (resource === "food") {
+        powerCost = 15;
+    }
+
+    else if (resource === "power") {
+        amount = 30;
+    }
+
+    if (marsResources.power < powerCost) {
+
+        alert("⚠️ Not enough power! Manage your energy carefully.");
+
+        return;
+    }
+
+    marsResources.power -= powerCost;
+
+    marsResources[resource] = Math.min(
+        100,
+        marsResources[resource] + amount
+    );
 
     updateMarsDisplay();
 
-});
+    const message = document.getElementById("mission-message");
+
+    if (message) {
+        message.innerHTML =
+            "✅ " + resource.toUpperCase() +
+            " resources successfully managed!";
+    }
+
+}
+
+
+// CHECK MISSION / ADVANCE DAY
+
+function checkMission() {
+
+    if (marsGameOver || marsMissionWon) {
+        return;
+    }
+
+    // DAILY RESOURCE CONSUMPTION
+
+    marsResources.oxygen -= 5;
+    marsResources.shield -= 3;
+    marsResources.power -= 4;
+    marsResources.food -= 6;
+
+    marsDay++;
+
+    // CHECK RESOURCE FAILURE
+
+    if (
+        marsResources.oxygen <= 0 ||
+        marsResources.shield <= 0 ||
+        marsResources.power <= 0 ||
+        marsResources.food <= 0
+    ) {
+
+        marsGameOver = true;
+
+        updateMarsDisplay();
+
+        const message = document.getElementById("mission-message");
+
+        if (message) {
+            message.innerHTML =
+                "❌ MISSION FAILED! One or more resources ran out. Reset and try again!";
+        }
+
+        return;
+    }
+
+    // MISSION SUCCESS
+
+    if (marsDay > 10) {
+
+        marsMissionWon = true;
+
+        marsDay = 10;
+
+        updateMarsDisplay();
+
+        const message = document.getElementById("mission-message");
+
+        if (message) {
+            message.innerHTML =
+                "🏆 CONGRATULATIONS! Your Mars colony survived 10 days! Mission Successful!";
+        }
+
+        return;
+    }
+
+    updateMarsDisplay();
+
+    const message = document.getElementById("mission-message");
+
+    if (message) {
+        message.innerHTML =
+            "🌍 Day " + marsDay +
+            " started! Monitor oxygen, radiation shielding, power and food.";
+    }
+
+}
 
 
 // ==========================================
-// SPACE QUIZ - 7 QUESTIONS
+// SPACE QUIZ - EXACTLY 7 QUESTIONS
 // ==========================================
 
 const questions = [
@@ -481,13 +366,9 @@ const questions = [
 
 
 let currentQuestion = 0;
-
 let score = 0;
-
 let timeLeft = 15;
-
 let quizTimer = null;
-
 let answerLocked = false;
 
 
@@ -498,10 +379,7 @@ function startQuiz() {
     clearInterval(quizTimer);
 
     currentQuestion = 0;
-
     score = 0;
-
-    answerLocked = false;
 
     showQuestion();
 
@@ -516,16 +394,16 @@ function showQuestion() {
 
     const container = document.getElementById("quiz-container");
 
+    if (!container) return;
+
     if (currentQuestion >= questions.length) {
 
         finishQuiz();
 
         return;
-
     }
 
     answerLocked = false;
-
     timeLeft = 15;
 
     const q = questions[currentQuestion];
@@ -534,21 +412,19 @@ function showQuestion() {
 
         <h3>🚀 Space Mission Quiz</h3>
 
-        <p>Question ${currentQuestion + 1} of ${questions.length}</p>
+        <p>Question ${currentQuestion + 1} of 7</p>
 
-        <p>🏆 Score: ${score}</p>
+        <p>🏆 Score: ${score} / 70</p>
 
         <div class="quiz-progress">
-
-            <div class="quiz-progress-fill"
-                style="width:${(currentQuestion / questions.length) * 100}%">
+            <div class="quiz-progress-bar"
+                 style="width:${(currentQuestion / 7) * 100}%">
             </div>
-
         </div>
 
         <h3 id="timer">⏱️ Time: 15s</h3>
 
-        <h3 class="quiz-question">
+        <h3 style="margin:20px 0;">
             ${q.question}
         </h3>
 
@@ -559,14 +435,11 @@ function showQuestion() {
     q.options.forEach((option, index) => {
 
         html += `
-
             <button
                 class="quiz-option"
-                onclick="checkAnswer(${index})"
-            >
+                onclick="checkAnswer(${index})">
                 ${option}
             </button>
-
         `;
 
     });
@@ -586,22 +459,20 @@ function showQuestion() {
 }
 
 
-// TIMER
+// QUIZ TIMER
 
 function startTimer() {
 
     clearInterval(quizTimer);
 
-    quizTimer = setInterval(function () {
+    quizTimer = setInterval(() => {
 
         timeLeft--;
 
         const timer = document.getElementById("timer");
 
         if (timer) {
-
             timer.textContent = "⏱️ Time: " + timeLeft + "s";
-
         }
 
         if (timeLeft <= 0) {
@@ -613,14 +484,12 @@ function startTimer() {
             const feedback = document.getElementById("quiz-feedback");
 
             if (feedback) {
-
                 feedback.textContent = "⏰ Time's Up!";
-
             }
 
             disableOptions();
 
-            setTimeout(function () {
+            setTimeout(() => {
 
                 currentQuestion++;
 
@@ -649,19 +518,11 @@ function checkAnswer(selectedIndex) {
 
     const feedback = document.getElementById("quiz-feedback");
 
-    const buttons = document.querySelectorAll(".quiz-option");
-
     if (selectedIndex === correctAnswer) {
 
         score += 10;
 
         feedback.textContent = "✅ Correct! +10 Points 🚀";
-
-        if (buttons[selectedIndex]) {
-
-            buttons[selectedIndex].classList.add("correct-option");
-
-        }
 
     }
 
@@ -671,17 +532,11 @@ function checkAnswer(selectedIndex) {
             "❌ Incorrect! Correct answer: " +
             questions[currentQuestion].options[correctAnswer];
 
-        if (buttons[correctAnswer]) {
-
-            buttons[correctAnswer].classList.add("correct-option");
-
-        }
-
     }
 
     disableOptions();
 
-    setTimeout(function () {
+    setTimeout(() => {
 
         currentQuestion++;
 
@@ -692,15 +547,19 @@ function checkAnswer(selectedIndex) {
 }
 
 
-// DISABLE QUIZ OPTIONS
+// DISABLE OPTIONS
 
 function disableOptions() {
 
     const buttons = document.querySelectorAll(".quiz-option");
 
-    buttons.forEach(function (button) {
+    buttons.forEach(button => {
 
         button.disabled = true;
+
+        button.style.opacity = "0.6";
+
+        button.style.cursor = "not-allowed";
 
     });
 
@@ -715,30 +574,28 @@ function finishQuiz() {
 
     const container = document.getElementById("quiz-container");
 
-    let level = "";
+    if (!container) return;
 
+    let level = "";
     let badge = "";
 
-    if (score >= 70) {
+    if (score >= 60) {
 
         level = "Space Commander";
-
         badge = "🏆";
 
     }
 
-    else if (score >= 50) {
+    else if (score >= 40) {
 
         level = "Senior Astronaut";
-
         badge = "🥇";
 
     }
 
-    else if (score >= 30) {
+    else if (score >= 20) {
 
         level = "Junior Astronaut";
-
         badge = "🥈";
 
     }
@@ -746,7 +603,6 @@ function finishQuiz() {
     else {
 
         level = "Space Trainee";
-
         badge = "⭐";
 
     }
@@ -757,7 +613,7 @@ function finishQuiz() {
 
         <h2>🎉 Mission Completed!</h2>
 
-        <h1 class="quiz-badge">${badge}</h1>
+        <h1 style="font-size:45px;">${badge}</h1>
 
         <h3>${level}</h3>
 
@@ -792,7 +648,9 @@ function saveScore(newScore) {
             localStorage.getItem("nakshatraScores") || "[]"
         );
 
-        if (!Array.isArray(scores)) scores = [];
+        if (!Array.isArray(scores)) {
+            scores = [];
+        }
 
     }
 
@@ -804,11 +662,7 @@ function saveScore(newScore) {
 
     scores.push(newScore);
 
-    scores.sort(function (a, b) {
-
-        return b - a;
-
-    });
+    scores.sort((a, b) => b - a);
 
     scores = scores.slice(0, 5);
 
@@ -820,9 +674,13 @@ function saveScore(newScore) {
 }
 
 
+// SHOW LEADERBOARD
+
 function showLeaderboard() {
 
-    const container = document.getElementById("quiz-container");
+    const container = document.getElementById("leaderboard");
+
+    if (!container) return;
 
     let scores = [];
 
@@ -832,7 +690,9 @@ function showLeaderboard() {
             localStorage.getItem("nakshatraScores") || "[]"
         );
 
-        if (!Array.isArray(scores)) scores = [];
+        if (!Array.isArray(scores)) {
+            scores = [];
+        }
 
     }
 
@@ -843,11 +703,8 @@ function showLeaderboard() {
     }
 
     let html = `
-
-        <h2>🥇 Space Leaderboard</h2>
-
+        <h3>🥇 Space Leaderboard</h3>
         <p>Top 5 Scores</p>
-
     `;
 
     if (scores.length === 0) {
@@ -856,27 +713,15 @@ function showLeaderboard() {
 
     }
 
-    scores.forEach(function (item, index) {
+    scores.forEach((item, index) => {
 
         html += `
-
-            <div class="leaderboard-item">
-
-                ${index + 1}. ${item} Points
-
-            </div>
-
+            <p>
+                ${index + 1}. 🚀 ${item} / 70 Points
+            </p>
         `;
 
     });
-
-    html += `
-
-        <button onclick="startQuiz()">
-            Play Again 🚀
-        </button>
-
-    `;
 
     container.innerHTML = html;
 
@@ -892,6 +737,8 @@ function sendMessage() {
     const input = document.getElementById("user-input");
 
     const chatBox = document.getElementById("chat-box");
+
+    if (!input || !chatBox) return;
 
     const originalMessage = input.value.trim();
 
@@ -924,30 +771,30 @@ function sendMessage() {
 
     // ASSISTANT RESPONSE
 
-    let reply = "Ask me about planets, Mars, Moon, Sun or gravity!";
+    let reply = "Ask me about planets, Mars, Moon, Sun, astronauts or gravity! 🚀";
 
 
     if (message.includes("mars")) {
 
-        reply = "Mars is called the Red Planet. It has two moons: Phobos and Deimos. A human Mars outpost would need oxygen, water, food and radiation protection!";
+        reply = "Mars is called the Red Planet. It has two moons: Phobos and Deimos.";
 
     }
 
     else if (message.includes("moon")) {
 
-        reply = "The Moon is Earth's natural satellite. Humans first walked on the Moon in 1969.";
+        reply = "The Moon is Earth's natural satellite. It takes about 27.3 days to orbit Earth.";
 
     }
 
     else if (message.includes("sun")) {
 
-        reply = "The Sun is a star at the centre of our Solar System. It provides light and energy.";
+        reply = "The Sun is a star at the centre of our Solar System.";
 
     }
 
     else if (message.includes("earth")) {
 
-        reply = "Earth is our home planet and the only planet currently known to support life.";
+        reply = "Earth is our home planet and the only known planet with life.";
 
     }
 
@@ -971,7 +818,7 @@ function sendMessage() {
 
     else if (message.includes("neptune")) {
 
-        reply = "Neptune is the farthest planet from the Sun and has extremely strong winds.";
+        reply = "Neptune is the farthest planet from the Sun.";
 
     }
 
@@ -995,25 +842,28 @@ function sendMessage() {
 
     else if (message.includes("gravity")) {
 
-        reply = "Gravity is the force that attracts objects towards each other and helps keep planets in orbit.";
+        reply = "Gravity is the force of attraction between objects. It keeps planets in orbit.";
+
+    }
+
+    else if (message.includes("oxygen")) {
+
+        reply = "Astronauts need oxygen to breathe. Space stations use life-support systems to provide it.";
 
     }
 
     else if (
-        message.includes("oxygen") ||
-        message.includes("life support")
+        message.includes("shield") ||
+        message.includes("radiation")
     ) {
 
-        reply = "Oxygen is essential for astronauts to breathe. A Mars habitat needs a reliable life-support system.";
+        reply = "Radiation shielding protects astronauts from harmful space radiation.";
 
     }
 
-    else if (
-        message.includes("radiation") ||
-        message.includes("shield")
-    ) {
+    else if (message.includes("food")) {
 
-        reply = "Radiation shielding helps protect astronauts from harmful space radiation.";
+        reply = "Astronauts need a continuous food supply. Future Mars missions may grow food using controlled environments.";
 
     }
 
@@ -1022,16 +872,7 @@ function sendMessage() {
         message.includes("energy")
     ) {
 
-        reply = "Solar panels can generate electrical power for a Mars outpost.";
-
-    }
-
-    else if (
-        message.includes("food") ||
-        message.includes("plant")
-    ) {
-
-        reply = "Growing crops in controlled environments could help provide food for future Mars explorers.";
+        reply = "Solar panels can generate electricity for a Mars habitat.";
 
     }
 
@@ -1065,7 +906,6 @@ function sendMessage() {
 
     chatBox.appendChild(assistantMessage);
 
-
     input.value = "";
 
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -1073,24 +913,19 @@ function sendMessage() {
 }
 
 
-// SEND MESSAGE USING ENTER KEY
+// ==========================================
+// INITIALIZE WEBSITE
+// ==========================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const input = document.getElementById("user-input");
+    resetMission();
 
-    if (input) {
-
-        input.addEventListener("keydown", function (event) {
-
-            if (event.key === "Enter") {
-
-                sendMessage();
-
-            }
-
-        });
-
-    }
+    showLeaderboard();
 
 });
+
+
+// ==========================================
+// END OF NAKSHATRA AI
+// ==========================================
