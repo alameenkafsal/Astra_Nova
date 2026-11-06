@@ -1,1 +1,1 @@
-# Nakshatra-AI
+# AstraNova
